@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\DonatedItem;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Donation;
 
 class User extends Authenticatable
 {
@@ -42,4 +46,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function donated_item(): HasMany
+    {
+        return $this->hasMany(Donation::class);
+    }
+    public function donation(): HasMany
+    {
+        return $this->hasMany(Domain::class);
+    }
 }
