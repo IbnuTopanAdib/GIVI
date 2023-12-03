@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DonationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,4 +20,17 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/register', [RegisterController::class, 'index']);
 
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
+
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+
+Route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
+
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::middleware(['auth', 'checklevel:donor', 'prevent-back-history'])->group(function () {
+    Route::get('/donation', [DonationController::class, 'index'])->name('donation');
+    Route::get('/donation/create', [DonationController::class, 'create'])->name('donation');
+});

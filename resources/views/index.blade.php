@@ -1,649 +1,602 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Meta, title, CSS, favicons, etc. -->
+    <title>GiveHope &mdash; Website Template by Colorlib</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>RUN CHARITY </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Styles -->
-    <link rel='stylesheet' href='/assets/css/bootstrap.min.css'>
-    <link rel='stylesheet' href='/assets/css/animate.min.css'>
-    <link rel='stylesheet' href="/assets/css/font-awesome.min.css" />
-    <link rel='stylesheet' href="/assets/css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,500|Dosis:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/css/aos.css">
+    <link rel="stylesheet" href="/assets/css/ionicons.min.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/assets/css/jquery.timepicker.css">
+    <link rel="stylesheet" href="/assets/css/flaticon.css">
+    <link rel="stylesheet" href="/assets/css/icomoon.css">
+    <link rel="stylesheet" href="/assets/css/fancybox.min.css">
 
-    <!-- Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600,700,800' rel='stylesheet'
-        type='text/css'>
+    <link rel="stylesheet" href="/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
- <![endif]-->
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="#">
 </head>
 
 <body>
-    <!-- Begin Hero Bg -->
-    <div id="parallax">
-    </div>
-    <!-- End Hero Bg
- ================================================== -->
-    <!-- Start Header
- ================================================== -->
-    <header id="header" class="navbar navbar-inverse navbar-fixed-top" role="banner">
-        <div class="container">
-            <div class="navbar-header">
-                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <!-- Your Logo -->
-                <a href="#hero" class="navbar-brand">RUN CHARITY <span class="lighter">LITE</span></a>
-            </div>
-            <!-- Start Navigation -->
-            <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#hero">Home</a>
-                    </li>
-                    <li>
-                        <a href="#about">About</a>
-                    </li>
-                    <li>
-                        <a href="#gallery">Gallery</a>
-                    </li>
-                    <li>
-                        <a href="#slider">Testimonials</a>
-                    </li>
-                    <li>
-                        <a href="#faq">FAQ</a>
-                    </li>
-                    <li>
-                        <a href="#contactarea">Contact</a>
-                    </li>
-                    <li>
-                        <a href="#contactarea">Contact</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <!-- Intro
- ================================================== -->
-    <section id="hero" class="section">
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">GiveHope</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="how-it-works.html" class="nav-link">How It Works</a></li>
+                    <li class="nav-item"><a href="donate.html" class="nav-link">Donate</a></li>
+                    <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                    @if ((auth()->user() && (auth()->user()->level == 'recipient' || auth()->user()->level == 'donor')))
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/">Profile</a></li>
+                                <li><a class="dropdown-item" href="/donation">Donation</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="/logout" class="nav-link">logout</a></li>
+                    @else
+                        <li class="nav-item"><a href="/register" class="nav-link">SignUp</a></li>
+                    @endif
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END nav -->
+
+    <div class="block-31" style="position: relative;">
+        <div class="owl-carousel loop-block-31 ">
+            <div class="block-30 block-30-sm item" style="background-image: url('/assets/images/bg-anime.png');"
+                data-stellar-background-ratio="0.5">
+                <div class="container">
+                    <div class="row align-items-center justify-content-center text-center">
+                        <div class="col-md-7">
+                            <h2 class="heading mb-5" id="effect-typing"></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="site-section section-counter">
         <div class="container">
             <div class="row">
-                <div class="col-md-5">
-                    <div class="herotext">
-                        <h1 class="wow bounceInDown" data-wow-duration="1s" data-wow-delay="0.1s">RUN <span
-                                class="lighter">CHARITY</span></h1>
-                        <p class="lead wow zoomIn" data-wow-duration="2s" data-wow-delay="0.5s">
-                            When we give cheerfully and accept gratefully, everyone is blessed.
-                        </p>
-                        <p>
-                            <a href="#" class="btn btn-default btn-lg wow fadeInLeft" role="button"> View Gallery
-                            </a> &nbsp; <a href="#" class="btn btn-default btn-lg wow fadeInRight"
-                                role="button">Find a Cause</a>
-                        </p>
+                <div class="col-md-6 pr-5">
+                    <div class="block-48">
+                        <span class="block-48-text-1">Served Over</span>
+                        <div class="block-48-counter ftco-number" data-number="1321901">0</div>
+                        <span class="block-48-text-1 mb-4 d-block">Children in 150 Countries</span>
+                        <p class="mb-0"><a href="#" class="btn btn-white px-3 py-2">View Our Program</a></p>
                     </div>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-6 welcome-text">
+                    <h2 class="display-4 mb-3">Who Are We?</h2>
+                    <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and
+                        Consonantia, there
+                        live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics,
+                        a large
+                        language ocean.</p>
+                    <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary
+                        regelialia.
+                    </p>
+                    <p class="mb-0"><a href="#" class="btn btn-primary px-3 py-2">Learn More</a></p>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- About
- ================================================== -->
-    <section id="about" class="parallax section"
-        style="background-image: url(http://themepush.com/demo/runcharity/assets/img/1.jpg);">
-        <div class="wrapsection">
-            <div class="parallax-overlay" style="background-color: #01b0d1;opacity:0.9;"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <!-- Title -->
-                        <div class="maintitle">
-                            <h3 class="section-title"><strong>FIND <span class="lighter">CAUSE</span></strong> to
-                                support on your run</h3>
-                            <p class="lead">
-                                Mentum lectus id turpis suscipit, ut egestas magna volutpat. Donec a purus tellus. Nunc
-                                ut dolor eu est gravida auctor quis vitae sapien.
-                            </p>
+    </div>
+
+    <div class="site-section border-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="media block-6">
+                        <div class="icon"><span class="ion-ios-bulb"></span></div>
+                        <div class="media-body">
+                            <h3 class="heading">Our Mission</h3>
+                            <p>A small river named Duden flows by their place and supplies it with the necessary
+                                regelialia.</p>
+                            <p><a href="#" class="link-underline">Learn More</a></p>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="service-box wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s">
-                            <img src="http://themepush.com/demo/runcharity/assets/img/dummy.jpg" alt="">
-                            <h3>August 7, 2015 <br />Square Garden</h3>
-                            <div class="text-left">
-                                <p>
-                                    I will place all the necessary content for this event here, including where they can
-                                    register, join, attend &amp; so on.
-                                </p>
-                                <p>
-                                    If not enough room, I will link to learn more, a new event page dedicated.
-                                </p>
-                                <p>
-                                    Yap. Really looking goody awesome!
-                                </p>
-                                <p class="text-center">
-                                    <button type="button" class="btn btn-info btn-md"><a href="#">Learn
-                                            More</a></button>
-                                </p>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="media block-6">
+                        <div class="icon"><span class="ion-ios-cash"></span></div>
+                        <div class="media-body">
+                            <h3 class="heading">Make Donations</h3>
+                            <p>A small river named Duden flows by their place and supplies it with the necessary
+                                regelialia.</p>
+                            <p><a href="#" class="link-underline">Learn More</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="media block-6">
+                        <div class="icon"><span class="ion-ios-contacts"></span></div>
+                        <div class="media-body">
+                            <h3 class="heading">We Need Volunteers</h3>
+                            <p>A small river named Duden flows by their place and supplies it with the necessary
+                                regelialia.</p>
+                            <p><a href="#" class="link-underline">Learn More</a></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- .site-section -->
+
+
+
+
+
+    <div class="site-section fund-raisers bg-light">
+        <div class="container">
+            <div class="row mb-3 justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h2>Latest Fundraisers</h2>
+                    <p class="lead">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.
+                    </p>
+                    <p><a href="#" class="link-underline">View All Fundraisers</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+
+            <!-- <div class="row"> -->
+
+            <div class="col-md-12 block-11">
+                <div class="nonloop-block-11 owl-carousel">
+
+                    <div class="card fundraise-item">
+                        <a href="#"><img class="card-img-top" src="/assets/images/img_1.jpg"
+                                alt="Image placeholder"></a>
+                        <div class="card-body">
+                            <h3 class="card-title"><a href="#">Water Is Life. Clean Water In Urban Area</a></h3>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                                bulk of the card's
+                                content.</p>
+                            <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
+                            <div class="progress custom-progress-success">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 28%"
+                                    aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="service-box wow flipInY" data-wow-duration="1.5s" data-wow-delay="0.1s">
-                            <span class="glyphicon glyphicon-stats"></span>
-                            <h3>1.386 Participants</h3>
-                            <p>
-                                Nullam posuere, libero id interdum hendrerit, tortor nisl consectetur elit.
-                            </p>
-                            <button type="button" class="btn btn-info btn-md"><a href="#">Learn More</a></button>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="service-box wow flipInY" data-wow-duration="1.5s" data-wow-delay="0.2s">
-                            <span class="glyphicon glyphicon-tree-deciduous"></span>
-                            <h3>195 Concerts</h3>
-                            <p>
-                                Nullam posuere, libero id interdum hendrerit, tortor nisl consectetur elit.
-                            </p>
-                            <button type="button" class="btn btn-info btn-md"><a href="#">Learn
-                                    More</a></button>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="service-box wow flipInY" data-wow-duration="1.5s" data-wow-delay="0.3s">
-                            <span class="glyphicon glyphicon-heart"></span>
-                            <h3>268 Sponsors</h3>
-                            <p>
-                                Nullam posuere, libero id interdum hendrerit, tortor nisl consectetur elit.
-                            </p>
-                            <button type="button" class="btn btn-info btn-md"><a href="#">Learn
-                                    More</a></button>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="service-box wow flipInY" data-wow-duration="1.5s" data-wow-delay="0.4s">
-                            <span class="glyphicon glyphicon-usd"></span>
-                            <h3>$5.647 Donated</h3>
-                            <p>
-                                Nullam posuere, libero id interdum hendrerit, tortor nisl consectetur elit.
-                            </p>
-                            <button type="button" class="btn btn-info btn-md"><a href="#">Learn
-                                    More</a></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Random
- ================================================== -->
-    <section class="parallax section"
-        style="background-image: url(http://themepush.com/demo/runcharity/assets/img/3.jpg);">
-        <div class="wrapsection">
-            <div class="parallax-overlay"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 sol-sm-12">
-                        <div class="maintitle">
-                            <h3 class="section-title justtitle">Participation is everything</h3>
-                            <p class="lead bottom0 wow bounceInUp">
-                                Fusce fermentum lectus id turpis suscipit, ut egestas magna volutpat. Donec a purus
-                                tellus. Nunc ut dolor eu est gravida auctor quis vitae.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Gallery
- ================================================== -->
-    <section id="gallery" class="parallax section"
-        style="background-image: url(http://themepush.com/demo/runcharity/assets/img/2.jpg);">
-        <div class="wrapsection">
-            <div class="parallax-overlay" style="background-color:#00c1c1;opacity:0.9;"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 sol-sm-12">
-                        <div class="maintitle">
-                            <h3 class="section-title">Events Gallery</h3>
-                            <p class="lead wow flipInX">
-                                Have a look at your past events gallery, see how much fun we have while helping people
-                                all over the world. Join our community today!
-                            </p>
+                            <span class="fund-raised d-block">$12,000 raised of $30,000</span>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <a href="https://ununsplash.imgix.net/photo-1429277158984-614d155e0017?fit=crop&amp;fm=jpg&amp;h=700&amp;q=75&amp;w=1050"
-                            title="This is the description">
-                            <img src="https://ununsplash.imgix.net/photo-1429277158984-614d155e0017?fit=crop&amp;fm=jpg&amp;h=700&amp;q=75&amp;w=1050"
-                                alt="" class="image-responsive">
-                            <div class="description">
-                                <span class="caption">This is <b>awesome</b></span>
-                                <span class="camera"><i class="fa fa-camera"></i></span>
-                                <div class="clearfix"></div>
+
+                    <div class="card fundraise-item">
+                        <a href="#"><img class="card-img-top" src="/assets/images/img_7.jpg"
+                                alt="Image placeholder"></a>
+                        <div class="card-body">
+                            <h3 class="card-title"><a href="#">Need Shelter for Children in Africa</a></h3>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                                bulk of the card's
+                                content.</p>
+                            <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
+                            <div class="progress custom-progress-success">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 28%"
+                                    aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                        </a>
-                    </div>
-                    <div class="col-md-4">
-                        <a href="https://unsplash.imgix.net/uploads/14115408840644deb16b0/2dc933e3?fit=crop&amp;fm=jpg&amp;h=700&amp;q=75&amp;w=1050"
-                            title="This is the description">
-                            <img src="https://unsplash.imgix.net/uploads/14115408840644deb16b0/2dc933e3?fit=crop&amp;fm=jpg&amp;h=700&amp;q=75&amp;w=1050"
-                                alt="" class="image-responsive">
-                            <div class="description">
-                                <span class="caption">Great <b>marathon</b></span>
-                                <span class="camera"><i class="fa fa-link"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-4">
-                        <a href="https://ununsplash.imgix.net/photo-1429277096327-11ee3b761c93?fit=crop&amp;fm=jpg&amp;h=700&amp;q=75&amp;w=1050"
-                            title="This is the description">
-                            <img src="https://ununsplash.imgix.net/photo-1429277096327-11ee3b761c93?fit=crop&amp;fm=jpg&amp;h=700&amp;q=75&amp;w=1050"
-                                alt="" class="image-responsive">
-                            <div class="description">
-                                <span class="caption">Running <b>miles</b></span>
-                                <span class="camera"><i class="fa fa-heart"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-4">
-                        <a href="https://unsplash.imgix.net/uploads/141327328038701afeede/eda0fb7c?fit=crop&amp;fm=jpg&amp;h=700&amp;q=75&amp;w=1050"
-                            title="This is the description">
-                            <img src="https://unsplash.imgix.net/uploads/141327328038701afeede/eda0fb7c?fit=crop&amp;fm=jpg&amp;h=700&amp;q=75&amp;w=1050"
-                                alt="" class="image-responsive">
-                            <div class="description">
-                                <span class="caption">Young <b>volunteers</b></span>
-                                <span class="camera"><i class="fa fa-tachometer"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-4">
-                        <a href="https://ununsplash.imgix.net/photo-1418225043143-90858d2301b4?fit=crop&amp;fm=jpg&amp;h=700&amp;q=75&amp;w=1050"
-                            title="This is the description">
-                            <img src="https://ununsplash.imgix.net/photo-1418225043143-90858d2301b4?fit=crop&amp;fm=jpg&amp;h=700&amp;q=75&amp;w=1050"
-                                alt="" class="image-responsive">
-                            <div class="description">
-                                <span class="caption">Charity <b>concerts</b></span>
-                                <span class="camera"><i class="fa fa-microphone"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-4">
-                        <a href="https://unsplash.imgix.net/photo-1428908799722-0a74e26ce7f6?fit=crop&amp;fm=jpg&amp;h=700&amp;q=75&amp;w=1050"
-                            title="This is the description">
-                            <img src="https://unsplash.imgix.net/photo-1428908799722-0a74e26ce7f6?fit=crop&amp;fm=jpg&amp;h=700&amp;q=75&amp;w=1050"
-                                alt="" class="image-responsive">
-                            <div class="description">
-                                <span class="caption">Generous <b>sponsors</b></span>
-                                <span class="camera"><i class="fa fa-coffee"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Text Carousel
- ================================================== -->
-    <section id="slider" class="parallax section"
-        style="background-image: url(http://themepush.com/demo/runcharity/assets/img/4.jpg);">
-        <div class="wrapsection">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="Carousel" class="carousel slide">
-                            <ol class="carousel-indicators">
-                                <li data-target="#Carousel" data-slide-to="0" class="active"></li>
-                                <li data-target="#Carousel" data-slide-to="1"></li>
-                                <li data-target="#Carousel" data-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="item active">
-                                    <blockquote>
-                                        <p class="lead">
-                                            You have not lived today until you have done something for someone who can
-                                            never repay you.
-                                        </p>
-                                        <small>John Bunyan, Marathon</small>
-                                    </blockquote>
-                                </div>
-                                <div class="item">
-                                    <blockquote>
-                                        <p class="lead">
-                                            The simplest acts of kindness are by far more powerful then a thousand heads
-                                            bowing in prayer.
-                                        </p>
-                                        <small>Mahatma Gandhi</small>
-                                    </blockquote>
-                                </div>
-                                <div class="item">
-                                    <blockquote>
-                                        <p class="lead">
-                                            There is no exercise better for the heart than reaching down and lifting
-                                            people up.
-                                        </p>
-                                        <small>John Holmes, Organizer</small>
-                                    </blockquote>
-                                </div>
-                            </div>
-                            <a class="left carousel-control" href="#Carousel" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#Carousel" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
+                            <span class="fund-raised d-block">$12,000 raised of $30,000</span>
                         </div>
                     </div>
+
+                    <div class="card fundraise-item">
+                        <a href="#"><img class="card-img-top" src="/assets/images/img_3.jpg"
+                                alt="Image placeholder"></a>
+                        <div class="card-body">
+                            <h3 class="card-title"><a href="#">Children Needs Education</a></h3>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                                bulk of the card's
+                                content.</p>
+                            <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
+                            <div class="progress custom-progress-success">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 28%"
+                                    aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <span class="fund-raised d-block">$12,000 raised of $30,000</span>
+                        </div>
+                    </div>
+
+
+                    <div class="card fundraise-item">
+                        <a href="#"><img class="card-img-top" src="/assets/images/img_4.jpg"
+                                alt="Image placeholder"></a>
+                        <div class="card-body">
+                            <h3 class="card-title"><a href="#">Refugees Needs Food</a></h3>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                                bulk of the card's
+                                content.</p>
+                            <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
+                            <div class="progress custom-progress-success">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 28%"
+                                    aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <span class="fund-raised d-block">$12,000 raised of $30,000</span>
+                        </div>
+                    </div>
+
+
+                    <div class="card fundraise-item">
+                        <a href="#"><img class="card-img-top" src="/assets/images/img_6.jpg"
+                                alt="Image placeholder"></a>
+                        <div class="card-body">
+                            <h3 class="card-title"><a href="#">Voluteer </a></h3>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                                bulk of the card's
+                                content.</p>
+                            <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
+                            <div class="progress custom-progress-success">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 28%"
+                                    aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <span class="fund-raised d-block">$12,000 raised of $30,000</span>
+                        </div>
+                    </div>
+
+                    <div class="card fundraise-item">
+                        <a href="#"><img class="card-img-top" src="/assets/images/img_3.jpg"
+                                alt="Image placeholder"></a>
+                        <div class="card-body">
+                            <h3 class="card-title"><a href="#">Children Needs Food</a></h3>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                                bulk of the card's
+                                content.</p>
+                            <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
+                            <div class="progress custom-progress-success">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 28%"
+                                    aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <span class="fund-raised d-block">$12,000 raised of $30,000</span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+            <!-- </div> -->
         </div>
-    </section>
-    <!-- FAQ
- ================================================== -->
-    <section id="faq" class="section">
-        <div class="wrapsection">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 sol-sm-12">
-                        <div class="maintitle">
-                            <h3 class="section-title">Conditions of <span
-                                    class="wow bounceInRight">Participation</span></h3>
-                            <p class="lead">
-                                Sed gravida, tortor in tincidunt sagittis, ligula lacus ultrices justo, sed mattis sem
-                                sem ut ex. Ut nunc elit, auctor et quam sit amet, convallis purus.
+    </div> <!-- .section -->
+
+
+    <div class="site-section fund-raisers">
+        <div class="container">
+            <div class="row mb-3 justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h2>Latest Donations</h2>
+                    <p class="lead">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.
+                    </p>
+                    <p class="mb-5"><a href="#" class="link-underline">View All Donations</a></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-5">
+                    <div class="person-donate text-center">
+                        <img src="/assets/images/person_1.jpg" alt="Image placeholder" class="img-fluid">
+                        <div class="donate-info">
+                            <h2>Jorge Smith</h2>
+                            <span class="time d-block mb-3">Donated Just now</span>
+                            <p>Donated <span class="text-success">$252</span> <br> <em>for</em> <a href="#"
+                                    class="link-underline fundraise-item">Water Is Life. Clean Water In Urban Area</a>
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-4 col-sm-12">
-                        <div class="faq-block wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0s">
-                            <div class="panel-group">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                                How old can I be? </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseOne" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            How old. This is the detailed answer. It is a long established fact that a
-                                            reader will be distracted by the readable content of a page when looking at
-                                            its layout.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                                Can we donate clothes? </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            Can we? This is the detailed answer. It is a long established fact that a
-                                            reader will be distracted by the readable content of a page when looking at
-                                            its layout.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                                How many miles to run ? </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseThree" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            So how many. This is the detailed answer. It is a long established fact that
-                                            a reader will be distracted by the readable content of a page when looking
-                                            at its layout.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-12">
-                        <div class="faq-block wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0.1s">
-                            <div class="panel-group">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-                                                Can we show sponsors? </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseFour" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            Sponsors. This is the detailed answer. It is a long established fact that a
-                                            reader will be distracted by the readable content of a page when looking at
-                                            its layout.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
-                                                Are there free drinks? </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseFive" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            Drinks. This is the detailed answer. It is a long established fact that a
-                                            reader will be distracted by the readable content of a page when looking at
-                                            its layout.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
-                                                Is medical exam free ? </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseSix" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            Medical. This is the detailed answer. It is a long established fact that a
-                                            reader will be distracted by the readable content of a page when looking at
-                                            its layout.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-12">
-                        <div class="faq-block wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0.2s">
-                            <div class="panel-group">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
-                                                Do you help with passport? </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseSeven" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            Passport. This is the detailed answer. It is a long established fact that a
-                                            reader will be distracted by the readable content of a page when looking at
-                                            its layout.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseEight">
-                                                What routes should one follow? </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseEight" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            Routes. This is the detailed answer. It is a long established fact that a
-                                            reader will be distracted by the readable content of a page when looking at
-                                            its layout.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseNine">
-                                                Do I have to pay a tax? </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseNine" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            Tax. This is the detailed answer. It is a long established fact that a
-                                            reader will be distracted by the readable content of a page when looking at
-                                            its layout.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+                <div class="col-md-6 col-lg-3 mb-5">
+                    <div class="person-donate text-center">
+                        <img src="/assets/images/person_2.jpg" alt="Image placeholder" class="img-fluid">
+                        <div class="donate-info">
+                            <h2>Christine Charles</h2>
+                            <span class="time d-block mb-3">Donated 1 hour ago</span>
+                            <p>Donated <span class="text-success">$400</span> <br> <em>for</em> <a href="#"
+                                    class="link-underline fundraise-item">Children Needs Education</a></p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <!-- Random
- ================================================== -->
-    <section class="whitecolor parallax section"
-        style="background-image: url(http://themepush.com/demo/runcharity/assets/img/5.jpg);">
-        <div class="wrapsection">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 sol-sm-12">
-                        <div class="maintitle">
-                            <h3 class="section-title justtitle">Charity <span class="wow flipInX">&amp; love</span>
-                                are the same</h3>
-                            <p class="lead bottom0">
-                                Fusce fermentum lectus id turpis suscipit, ut egestas magna volutpat. Donec a purus
-                                tellus. Nunc ut dolor eu est gravida auctor quis vitae.
+
+                <div class="col-md-6 col-lg-3 mb-5">
+                    <div class="person-donate text-center">
+                        <img src="/assets/images/person_3.jpg" alt="Image placeholder" class="img-fluid">
+                        <div class="donate-info">
+                            <h2>Albert Sluyter</h2>
+                            <span class="time d-block mb-3">Donated 4 hours ago</span>
+                            <p>Donated <span class="text-success">$1,200</span> <br> <em>for</em> <a href="#"
+                                    class="link-underline fundraise-item">Need Shelter for Children in Africa</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 mb-5">
+                    <div class="person-donate text-center">
+                        <img src="/assets/images/person_4.jpg" alt="Image placeholder" class="img-fluid">
+                        <div class="donate-info">
+                            <h2>Andrew Holloway</h2>
+                            <span class="time d-block mb-3">Donated 9 hours ago</span>
+                            <p>Donated <span class="text-success">$100</span> <br> <em>for</em> <a href="#"
+                                    class="link-underline fundraise-item">Water Is Life. Clean Water In Urban Area</a>
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Contact
- ================================================== -->
-    <section id="contactarea" class="parallax section"
-        style="background-image: url(http://themepush.com/demo/runcharity/assets/img/map.png);">
-        <div class="wrapsection">
-            <div class="parallax-overlay" style="background-color: #1cbb9b;opacity:0.95;"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="maintitle">
-                            <h3 class="section-title">Get in Touch</h3>
-                            <p class="lead">
-                                If you have questions about our events, don't hesitate to send us your message. This is
-                                a real working contact form, test it!
-                            </p>
-                        </div>
-                        <form id="contact" name="contact" method="post" class="text-left">
-                            <fieldset>
-                                <div class="row">
-                                    <div class="col-md-4 wow fadeIn animated animated" data-wow-delay="0.1s"
-                                        data-wow-duration="2s">
-                                        <label for="name">Name<span class="required">*</span></label>
-                                        <input type="text" name="name" id="name" size="30"
-                                            value="" required />
-                                    </div>
-                                    <div class="col-md-4 wow fadeIn animated" data-wow-delay="0.3s"
-                                        data-wow-duration="2s">
-                                        <label for="email">Email<span class="required">*</span></label>
-                                        <input type="text" name="email" id="email" size="30"
-                                            value="" required />
-                                    </div>
-                                    <div class="col-md-4 wow fadeIn animated" data-wow-delay="0.3s"
-                                        data-wow-duration="2s">
-                                        <label for="phone">Phone</label>
-                                        <input type="text" name="phone" id="phone" size="30"
-                                            value="" />
-                                    </div>
-                                </div>
-                                <div class="wow fadeIn animated" data-wow-delay="0.3s" data-wow-duration="1.5"
-                                    style="margin-top:15px;">
-                                    <label for="message">Message<span class="required">*</span></label>
-                                    <textarea name="message" id="message" required></textarea>
-                                </div>
-                                <div class="wow fadeIn animated" data-wow-delay="0.3" data-wow-duration="1.5s">
-                                    <input id="submit" type="submit" name="submit" value="Send" />
-                                </div>
-                            </fieldset>
+    </div> <!-- .section -->
+
+    <div class="featured-section overlay-color-2" style="background-image: url('/assets/images/bg_3.jpg');">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <img src="/assets/images/bg_3.jpg" alt="Image placeholder" class="img-fluid">
+                </div>
+
+                <div class="col-md-6 pl-md-5">
+                    <span class="featured-text d-block mb-3">Success Stories</span>
+                    <h2>Water Is Life. We Successfuly Provide Clean Water in South East Asia</h2>
+                    <p class="mb-3">Far far away, behind the word mountains, far from the countries Vokalia and
+                        Consonantia, there
+                        live the blind texts.</p>
+                    <span class="fund-raised d-block mb-5">We have raised $100,000</span>
+
+                    <p><a href="#" class="btn btn-success btn-hover-white py-3 px-5">Read The Full Story</a></p>
+                </div>
+
+            </div>
+        </div>
+
+    </div> <!-- .featured-donate -->
+
+    <div class="site-section bg-light">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <h2>Latest News</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="post-entry">
+                        <a href="#" class="mb-3 img-wrap">
+                            <img src="/assets/images/img_4.jpg" alt="Image placeholder" class="img-fluid">
+                        </a>
+                        <h3><a href="#">Be A Volunteer Today</a></h3>
+                        <span class="date mb-4 d-block text-muted">July 26, 2018</span>
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+                        <p><a href="#" class="link-underline">Read More</a></p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="post-entry">
+                        <a href="#" class="mb-3 img-wrap">
+                            <img src="/assets/images/img_5.jpg" alt="Image placeholder" class="img-fluid">
+                        </a>
+                        <h3><a href="#">You May Save The Life of A Child</a></h3>
+                        <span class="date mb-4 d-block text-muted">July 26, 2018</span>
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+                        <p><a href="#" class="link-underline">Read More</a></p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="post-entry">
+                        <a href="#" class="mb-3 img-wrap">
+                            <img src="/assets/images/img_6.jpg" alt="Image placeholder" class="img-fluid">
+                        </a>
+                        <h3><a href="#">Children That Needs Care</a></h3>
+                        <span class="date mb-4 d-block text-muted">July 26, 2018</span>
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+                        <p><a href="#" class="link-underline">Read More</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- .section -->
+
+    <div class="featured-section overlay-color-2" style="background-image: url('/assets/images/bg_2.jpg');">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 mb-5 mb-md-0">
+                    <img src="/assets/images/bg_2.jpg" alt="Image placeholder" class="img-fluid">
+                </div>
+
+                <div class="col-md-6 pl-md-5">
+
+                    <div class="form-volunteer">
+
+                        <h2>Be A Volunteer Today</h2>
+                        <form action="#" method="post">
+                            <div class="form-group">
+                                <!-- <label for="name">Name</label> -->
+                                <input type="text" class="form-control py-2" id="name"
+                                    placeholder="Enter your name">
+                            </div>
+                            <div class="form-group">
+                                <!-- <label for="email">Email</label> -->
+                                <input type="text" class="form-control py-2" id="email"
+                                    placeholder="Enter your email">
+                            </div>
+                            <div class="form-group">
+                                <!-- <label for="v_message">Email</label> -->
+                                <textarea name="v_message" id="" cols="30" rows="3" class="form-control py-2"
+                                    placeholder="Write your message"></textarea>
+                                <!-- <input type="text" class="form-control py-2" id="email"> -->
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-white px-5 py-2" value="Send">
+                            </div>
                         </form>
-                        <div id="success">
-                            <p class="contactalert">
-                                Your message was sent succssfully! I will be in touch as soon as I can.
-                            </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div> <!-- .featured-donate -->
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-6 col-lg-4">
+                    <h3 class="heading-section">About Us</h3>
+                    <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and
+                        Consonantia, there
+                        live the blind texts. </p>
+                    <p class="mb-5">Separated they live in Bookmarksgrove right at the coast of the Semantics, a
+                        large language
+                        ocean.</p>
+                    <p><a href="#" class="link-underline">Read More</a></p>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <h3 class="heading-section">Recent Blog</h3>
+                    <div class="block-21 d-flex mb-4">
+                        <figure class="mr-3">
+                            <img src="/assets/images/img_1.jpg" alt="" class="img-fluid">
+                        </figure>
+                        <div class="text">
+                            <h3 class="heading"><a href="#">Water Is Life. Clean Water In Urban Area</a></h3>
+                            <div class="meta">
+                                <div><a href="#"><span class="icon-calendar"></span> July 29, 2018</a></div>
+                                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                            </div>
                         </div>
-                        <div id="error">
-                            <p class="contactalert">
-                                Something went wrong, try refreshing and submitting the form again.
-                            </p>
+                    </div>
+
+                    <div class="block-21 d-flex mb-4">
+                        <figure class="mr-3">
+                            <img src="/assets/images/img_2.jpg" alt="" class="img-fluid">
+                        </figure>
+                        <div class="text">
+                            <h3 class="heading"><a href="#">Life Is Short So Be Kind</a></h3>
+                            <div class="meta">
+                                <div><a href="#"><span class="icon-calendar"></span> July 29, 2018</a></div>
+                                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="block-21 d-flex mb-4">
+                        <figure class="mr-3">
+                            <img src="/assets/images/img_4.jpg" alt="" class="img-fluid">
+                        </figure>
+                        <div class="text">
+                            <h3 class="heading"><a href="#">Unfortunate Children Need Your Love</a></h3>
+                            <div class="meta">
+                                <div><a href="#"><span class="icon-calendar"></span> July 29, 2018</a></div>
+                                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="block-23">
+                        <h3 class="heading-section">Get Connected</h3>
+                        <ul>
+                            <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain
+                                    View, San
+                                    Francisco, California, USA</span></li>
+                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392
+                                        3929 210</span></a></li>
+                            <li><a href="#"><span class="icon icon-envelope"></span><span
+                                        class="text">info@yourdomain.com</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row pt-5">
+                <div class="col-md-12 text-center">
+
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script> All rights reserved | This template is made with
+                        <i class="ion-ios-heart text-danger" aria-hidden="true"></i> by <a
+                            href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+
+                </div>
             </div>
         </div>
-    </section>
-    <!-- Credits
-=============================================== -->
-    <section id="credits" class="text-center">
-        <span class="social wow zoomIn">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-skype"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-pinterest"></i></a>
-            <a href="#"><i class="fa fa-google-plus"></i></a>
-        </span><br />
-        Copyright &copy; <a href="#">Your Agency</a>
-        <br />Template By <i class="fa fa-heart"></i> WowThemes.Net
-    </section>
-    <!-- Bootstrap core JavaScript
- ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    </footer>
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4"
+                stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4"
+                stroke-miterlimit="10" stroke="#F96D00" />
+        </svg></div>
+
+
     <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
-    <script src="/assets/js/waypoints.min.js"></script>
-    <script src="/assets/js/jquery.scrollTo.min.js"></script>
-    <script src="/assets/js/jquery.localScroll.min.js"></script>
+    <script src="/assets/js/jquery.easing.1.3.js"></script>
+    <script src="/assets/js/jquery.waypoints.min.js"></script>
+    <script src="/assets/js/jquery.stellar.min.js"></script>
+    <script src="/assets/js/owl.carousel.min.js"></script>
     <script src="/assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="/assets/js/validate.js"></script>
-    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/bootstrap-datepicker.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
+    </script>
+
+    <script src="/assets/js/jquery.fancybox.min.js"></script>
+
+    <script src="/assets/js/aos.js"></script>
+    <script src="/assets/js/jquery.animateNumber.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="/assets/js/google-map.js"></script>
+    <script src="/assets/js/main.js"></script>
+
 </body>
 
 </html>
