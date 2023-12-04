@@ -64,95 +64,50 @@
         </div>
     </nav>
     <div class="d-flex flex-row">
-        <aside class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
-            <ul class="nav nav-pills flex-column mb-auto">
-                <div class="dropdown">
-                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                        id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="" width="32" height="32"
-                            class="rounded-circle me-2">
-                        <strong>mdo</strong>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
-                    </ul>
+        <aside class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 330px;">
+            <h2 class="mb-3">Form Pengisian Data Barang</h2>
+            <form action="{{ route('donation.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nama Barang</label>
+                    <input type="text" class="form-control" id="item-name" name="name" required>
                 </div>
-                <hr>
-                <li class="nav-item">
-                    <a href="/donation" class="nav-link active" aria-current="page">
-                        <svg class="bi me-2" width="16" height="16">
-                            <use xlink:href="#home" />
-                        </svg>
-                        Hibahkan Barang
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link text-white">
-                        <svg class="bi me-2" width="16" height="16">
-                            <use xlink:href="#speedometer2" />
-                        </svg>
-                        Daftar Barang
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link text-white">
-                        <svg class="bi me-2" width="16" height="16">
-                            <use xlink:href="#table" />
-                        </svg>
-                        Panduan
-                    </a>
-                </li>
-            </ul>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Deskripsi</label>
+                    <textarea class="form-control" id="description" rows="3" name = "description" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="item-location" class="form-label">Lokasi</label>
+                    <input type="text" class="form-control" id="item-location" name = "location" required>
+                </div>
+                <div class="mb-3">
+                    <label for="category_id" class="form-label">Kategori</label>
+                    <select class="form-select" id="category_id" name="category_id" required disabled>
+                        <option value="" disabled>Kategori Perabotan</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" {{ $selectedCategoryId == $category->id ? 'selected' : '' }}>
+                                {{ $category->category_name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="item-image" class="form-label">Foto Barang</label>
+                    <input type="file" class="form-control" id="item-image" name="image">
+                </div>
+                {{-- <button type="button" class="btn btn-primary" onclick="updatePreview()">Pratinjau</button> --}}
+                <button type="submit" class="btn btn-primary">Kirim Pengajuan</button>
+            </form>
 
 
         </aside>
         <div class="container" style="min-height: 100vh">
-            <div class="row">
-                <div class="col-md-4">
-                    <a href="/" class="card-link">
-                        <div class="card-barang">
-                            <div class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="38px" width="38px" viewBox="0 0 640 512">
-                                    <path d="M64 160C64 89.3 121.3 32 192 32H448c70.7 0 128 57.3 128 128v33.6c-36.5 7.4-64 39.7-64 78.4v48H128V272c0-38.7-27.5-71-64-78.4V160zM544 272c0-20.9 13.4-38.7 32-45.3c5-1.8 10.4-2.7 16-2.7c26.5 0 48 21.5 48 48V448c0 17.7-14.3 32-32 32H576c-17.7 0-32-14.3-32-32H96c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V272c0-26.5 21.5-48 48-48c5.6 0 11 1 16 2.7c18.6 6.6 32 24.4 32 45.3v48 32h32H512h32V320 272z" />
-                                </svg>
-                            </div>
-                            <p class="title">Favourites</p>
-                            <p class="text">Check all your favourites in one place.</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="/" class="card-link">
-                        <div class="card-barang">
-                            <div class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="38" width="38" viewBox="0 0 512 512">
-                                    <path d="M465 7c-9.4-9.4-24.6-9.4-33.9 0L383 55c-2.4 2.4-4.3 5.3-5.5 8.5l-15.4 41-77.5 77.6c-45.1-29.4-99.3-30.2-131 1.6c-11 11-18 24.6-21.4 39.6c-3.7 16.6-19.1 30.7-36.1 31.6c-25.6 1.3-49.3 10.7-67.3 28.6C-16 328.4-7.6 409.4 47.5 464.5s136.1 63.5 180.9 18.7c17.9-17.9 27.4-41.7 28.6-67.3c.9-17 15-32.3 31.6-36.1c15-3.4 28.6-10.5 39.6-21.4c31.8-31.8 31-85.9 1.6-131l77.6-77.6 41-15.4c3.2-1.2 6.1-3.1 8.5-5.5l48-48c9.4-9.4 9.4-24.6 0-33.9L465 7zM208 256a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
-                                </svg>
-                            </div>
-                            <p class="title">Alat Musik</p>
-                            <p class="text">Alat musik yang masih layak digunakan</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="/" class="card-link">
-                        <div class="card-barang">
-                            <div class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="38" width="38" viewBox="0 0 448 512">
-                                    <path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z" />
-                                </svg>
-                            </div>
-                            <p class="title">Buku</p>
-                            <p class="text">Buku yang masih layak digunakan</p>
-                        </div>
-                    </a>
-                </div>
+            <div id="preview-container" class="mt-4">
+                <h4>Pratinjau Barang:</h4>
+                <p id="preview-name">Nama Barang: </p>
+                <p id="preview-description">Deskripsi: </p>
+                <p id="preview-location">Lokasi: </p>
+                <img id="preview-image">
             </div>
         </div>
         
@@ -287,6 +242,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="/assets/js/google-map.js"></script>
     <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/donation.js"></script>
 
 </body>
 

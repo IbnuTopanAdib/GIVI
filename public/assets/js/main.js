@@ -20,9 +20,9 @@ $(document).ready(function($) {
 
 	if (typineffect) {
 		const texts = [
-			"text ini diketik dari javascript",
-			"text ini adalah lanjutan dari text sebelumnya",
-			"text ini adalah lanjutan dari text 2"
+			"Share what you don't need, Provide what is needed.",
+			"An Opprtunities is coming",
+			"Transforming Waste into Opportunities.",
 		];
 
 		function textTyping(element, textArray, index = 0) {

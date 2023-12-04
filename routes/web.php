@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DonationController;
+use App\Http\Controllers\DonatedItemController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +32,6 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('authentic
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth', 'checklevel:donor', 'prevent-back-history'])->group(function () {
-    Route::get('/donation', [DonationController::class, 'index'])->name('donation');
-    Route::get('/donation/create', [DonationController::class, 'create'])->name('donation');
+    Route::resource('/donation', DonatedItemController::class);
+    Route::get('/donation/create/{category_id}', [DonatedItemController::class, 'create']);
 });
