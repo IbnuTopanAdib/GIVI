@@ -13,7 +13,7 @@ class DonationController extends Controller
      */
     public function index()
     {
-        return view('donations.index');
+      
     }
 
     /**
@@ -21,7 +21,7 @@ class DonationController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -29,7 +29,8 @@ class DonationController extends Controller
      */
     public function store(StoreDonationRequest $request)
     {
-        //
+        
+        
     }
 
     /**
