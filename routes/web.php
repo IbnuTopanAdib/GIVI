@@ -35,3 +35,10 @@ Route::middleware(['auth', 'checklevel:donor', 'prevent-back-history'])->group(f
     Route::resource('/donation', DonatedItemController::class);
     Route::get('/donation/create/{category_id}', [DonatedItemController::class, 'create']);
 });
+
+Route::middleware(['auth', 'checklevel:recipient', 'prevent-back-history'])->group(function () {
+   Route::get('/items', [DonatedItemController::class, 'showAllItems']);
+   Route::get('/items/{id}', [DonatedItemController::class, 'showItem']);
+   Route::get('/categories', [DonatedItemController::class, 'showAllCategory']);
+   Route::get('/categories/{category_id}', [DonatedItemController::class, 'showBasedOnCategory']);
+});

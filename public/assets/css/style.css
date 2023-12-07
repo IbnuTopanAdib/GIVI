@@ -54,7 +54,7 @@ h5,
     top: 10px;
 }
 
-.card-barang {
+.card-category {
     width: 100%;
     max-width: 300px;
     min-width: 200px;
@@ -94,7 +94,7 @@ h5,
     fill: white;
 }
 
-.card-barang .title {
+.card-category .title {
     width: 100%;
     margin: 0;
     text-align: center;
@@ -105,7 +105,7 @@ h5,
     letter-spacing: 4px;
 }
 
-.card-barang .text {
+.card-category .text {
     width: 80%;
     margin: 0 auto;
     font-size: 13px;
@@ -119,22 +119,22 @@ h5,
     transition: all 0.3s ease;
 }
 
-.card-barang:hover {
+.card-category:hover {
     height: 270px;
 }
 
-.card-barang:hover .text {
+.card-category:hover .text {
     transition: all 0.3s ease;
     opacity: 1;
     max-height: 40px;
 }
 
-.card-barang:hover .icon {
+.card-category:hover .icon {
     background-position: -120px;
     transition: all 0.3s ease;
 }
 
-.card-barang:hover .icon svg path {
+.card-category:hover .icon svg path {
     fill: black;
     transition: all 0.3s ease;
 }
@@ -219,6 +219,150 @@ h5,
 
 .messages .message-item:hover {
     background-color: #f6f9ff;
+}
+
+.card-barang {
+    --accent-color: #f7ca44;
+    position: relative;
+    width: 240px;
+    background: white;
+    border-radius: 1rem;
+    padding: 0.3rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 50px 30px -20px;
+    transition: all 0.5s ease-in-out;
+}
+
+.card-barang .image-container {
+    position: relative;
+    width: 100%;
+    height: 130px;
+    border-radius: 0.7rem;
+    border-top-right-radius: 4rem;
+    margin-bottom: 1rem;
+}
+
+.card-barang .image-container img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
+.card-barang .image-container .img {
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    opacity: 0.1;
+}
+
+.card-barang .favorite {
+    position: absolute;
+    width: 19px;
+    height: 19px;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.card-barang .favorite input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.card-barang .favorite input:checked~svg {
+    animation: bouncing 0.5s;
+    fill: rgb(255, 95, 95);
+    filter: drop-shadow(0px 3px 1px rgba(53, 53, 53, 0.14));
+}
+
+.card-barang .favorite svg {
+    fill: #a8a8a8;
+}
+
+.card-barang .content {
+    padding: 0px 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.card-barang .content .category a{
+    font-weight: 900;
+    color: #a6a6a6;
+}
+
+.card-barang .content .item-name {
+    font-weight: 700;
+    color: #666666;
+    font-size: 0.7rem;
+    margin-bottom: 1rem;
+}
+
+
+.card-barang .button-container {
+    display: flex;
+    gap: 0.3rem;
+}
+
+.card-barang .button-container .button {
+    border-radius: 1.4rem 1.4rem 0.7rem 0.7rem;
+    border: none;
+    padding: 0.5rem 0;
+    background: var(--accent-color);
+    color: white;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.card-barang .button-container .button:hover {
+    background: orangered;
+}
+
+.card-barang .button-container .readmore {
+    flex: auto;
+}
+
+.card-barang:hover {
+    transform: scale(1.03);
+}
+
+@keyframes bouncing {
+
+    from,
+    to {
+        transform: scale(1, 1);
+    }
+
+    25% {
+        transform: scale(1.5, 2.1);
+    }
+
+    50% {
+        transform: scale(2.1, 1.5);
+    }
+
+    75% {
+        transform: scale(1.5, 2.05);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.float-animation {
+    animation: float 2s ease-in-out infinite;
 }
 
 @media (max-width: 991.98px) {
@@ -976,6 +1120,10 @@ textarea.form-control {
 
 .bg-primary {
     background: #f7ca44 !important;
+}
+
+.bg-secondary{
+    background: #e8e8e8 !important;
 }
 
 .site-section {

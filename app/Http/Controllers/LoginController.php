@@ -26,7 +26,7 @@ class LoginController extends Controller
                 return redirect()->intended('/');
             }
 
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/items');
         }
 
         return redirect('/login')->with('loginError', 'login failed');
