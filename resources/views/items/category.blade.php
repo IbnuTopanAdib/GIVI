@@ -29,7 +29,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="index.html">GiveHope</a>
+            <a class="navbar-brand" href="/">GIVI</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
@@ -37,83 +37,115 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="how-it-works.html" class="nav-link">How It Works</a></li>
-                    <li class="nav-item"><a href="donate.html" class="nav-link">Donate</a></li>
-                    <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
-                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-                    @if (auth()->user()->level == 'recipient' || auth()->user()->level == 'donor')
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/">Profile</a></li>
-                                <li><a class="dropdown-item" href="/donation">Donation</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                    @else
-                        <li class="nav-item"><a href="/register" class="nav-link">SignUp</a></li>
-                    @endif
+                    <form action="/items" class="d-flex" method="GET">
+                        @if (request('category'))
+                            <input type="hidden" name="category" value="{{ request('category') }}">
+                        @endif
+                        @if (request('user'))
+                            <input type="hidden" name="user" value="{{ request('user') }}">
+                        @endif
+
+                        <input type="text" class="form-control me-2" placeholder="Cari Barang...." name="search"
+                            value="{{ request('search') }}">
+                        <button type="submit" class="btn btn-primary">Cari Barang</button>
+
+                    </form>
+                    <li class="nav-item"><a href="how-it-works.html" class="nav-link">Kategori</a></li>
+                    <li class="nav-item"><a href="donate.html" class="nav-link">Favorit</a></li>
+                    <li class="nav-item active"><a href="gallery.html" class="nav-link">Profil</a></li>
                 </ul>
+
+                {{-- <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form> --}}
             </div>
         </div>
     </nav>
-    <div class="d-flex flex-row">
-        <aside class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 330px;">
-            <h2 class="mb-3">Form Pengisian Data Barang</h2>
-            <form action="{{ route('donation.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="mb-3">
-                    <label for="name" class="form-label">Nama Barang</label>
-                    <input type="text" class="form-control" id="item-name" name="name" required>
-                </div>
-                <div class="mb-3">
-                    <label for="description" class="form-label">Deskripsi</label>
-                    <textarea class="form-control" id="description" rows="3" name = "description" required></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="item-location" class="form-label">Lokasi</label>
-                    <input type="text" class="form-control" id="item-location" name = "location" required>
-                </div>
-                <div class="mb-3">
-                    <label for="category_id" class="form-label">Kategori</label>
-                    <select class="form-select" id="category_id" name="category_id" required>
-                        <option value="" disabled>Kategori Perabotan</option>
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" {{ $selectedCategoryId == $category->id ? 'selected' : '' }}>
-                                {{ $category->category_name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="item-image" class="form-label">Foto Barang</label>
-                    <input type="file" class="form-control" id="item-image" name="image">
-                </div>
-                {{-- <button type="button" class="btn btn-primary" onclick="updatePreview()">Pratinjau</button> --}}
-                <button type="submit" class="btn btn-primary">Kirim Pengajuan</button>
-            </form>
+    <!-- END nav -->
 
+    {{-- <div class="block-31" style="position: relative;">
+    <div class="owl-carousel loop-block-31 ">
+      <div class="block-30 block-30-sm item" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+        <div class="container">
+          <div class="row align-items-center justify-content-center text-center">
+            <div class="col-md-7">
+              <h2 class="heading">Our Gallery</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div> --}}
 
-        </aside>
-        <div class="container" style="min-height: 100vh">
-            <div id="preview-container" class="mt-4">
-                <h4>Pratinjau Barang:</h4>
-                <p id="preview-name">Nama Barang: </p>
-                <p id="preview-description">Deskripsi: </p>
-                <p id="preview-location">Lokasi: </p>
-                <img id="preview-image">
+    <div class="site-section bg-secondary">
+        <div class="container">
+            <div class="row">
+                @foreach ($categories as $category)
+                    <div class="col-md-4">
+
+                        <a href="categories/{{ $category->id }}" class="card-link">
+                            <div class="card-category">
+                                <div class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="38px" width="38px"
+                                        viewBox="0 0 640 512">
+                                        <path
+                                            d="M64 160C64 89.3 121.3 32 192 32H448c70.7 0 128 57.3 128 128v33.6c-36.5 7.4-64 39.7-64 78.4v48H128V272c0-38.7-27.5-71-64-78.4V160zM544 272c0-20.9 13.4-38.7 32-45.3c5-1.8 10.4-2.7 16-2.7c26.5 0 48 21.5 48 48V448c0 17.7-14.3 32-32 32H576c-17.7 0-32-14.3-32-32H96c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V272c0-26.5 21.5-48 48-48c5.6 0 11 1 16 2.7c18.6 6.6 32 24.4 32 45.3v48 32h32H512h32V320 272z" />
+                                    </svg>
+                                </div>
+                                <p class="title">{{ $category->category_name }}</p>
+                                <p class="text">Perabotan yang masih layak digunakan</p>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
-        
     </div>
 
+    <div class="featured-section overlay-color-2" style="background-image: url('images/bg_2.jpg');">
 
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 mb-5 mb-md-0">
+                    <img src="images/bg_2.jpg" alt="Image placeholder" class="img-fluid">
+                </div>
+
+                <div class="col-md-6 pl-md-5">
+
+                    <div class="form-volunteer">
+
+                        <h2>Be A Volunteer Today</h2>
+                        <form action="#" method="post">
+                            <div class="form-group">
+                                <!-- <label for="name">Name</label> -->
+                                <input type="text" class="form-control py-2" id="name"
+                                    placeholder="Enter your name">
+                            </div>
+                            <div class="form-group">
+                                <!-- <label for="email">Email</label> -->
+                                <input type="text" class="form-control py-2" id="email"
+                                    placeholder="Enter your email">
+                            </div>
+                            <div class="form-group">
+                                <!-- <label for="v_message">Email</label> -->
+                                <textarea name="v_message" id="" cols="30" rows="3" class="form-control py-2"
+                                    placeholder="Write your message"></textarea>
+                                <!-- <input type="text" class="form-control py-2" id="email"> -->
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-white px-5 py-2" value="Send">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div> <!-- .featured-donate -->
 
     <footer class="footer">
         <div class="container">
@@ -121,18 +153,16 @@
                 <div class="col-md-6 col-lg-4">
                     <h3 class="heading-section">About Us</h3>
                     <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and
-                        Consonantia, there
-                        live the blind texts. </p>
+                        Consonantia, there live the blind texts. </p>
                     <p class="mb-5">Separated they live in Bookmarksgrove right at the coast of the Semantics, a
-                        large language
-                        ocean.</p>
+                        large language ocean.</p>
                     <p><a href="#" class="link-underline">Read More</a></p>
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <h3 class="heading-section">Recent Blog</h3>
                     <div class="block-21 d-flex mb-4">
                         <figure class="mr-3">
-                            <img src="/assets/images/img_1.jpg" alt="" class="img-fluid">
+                            <img src="images/img_1.jpg" alt="" class="img-fluid">
                         </figure>
                         <div class="text">
                             <h3 class="heading"><a href="#">Water Is Life. Clean Water In Urban Area</a></h3>
@@ -146,7 +176,7 @@
 
                     <div class="block-21 d-flex mb-4">
                         <figure class="mr-3">
-                            <img src="/assets/images/img_2.jpg" alt="" class="img-fluid">
+                            <img src="images/img_2.jpg" alt="" class="img-fluid">
                         </figure>
                         <div class="text">
                             <h3 class="heading"><a href="#">Life Is Short So Be Kind</a></h3>
@@ -160,7 +190,7 @@
 
                     <div class="block-21 d-flex mb-4">
                         <figure class="mr-3">
-                            <img src="/assets/images/img_4.jpg" alt="" class="img-fluid">
+                            <img src="images/img_4.jpg" alt="" class="img-fluid">
                         </figure>
                         <div class="text">
                             <h3 class="heading"><a href="#">Unfortunate Children Need Your Love</a></h3>
@@ -177,13 +207,11 @@
                         <h3 class="heading-section">Get Connected</h3>
                         <ul>
                             <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain
-                                    View, San
-                                    Francisco, California, USA</span></li>
+                                    View, San Francisco, California, USA</span></li>
                             <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392
                                         3929 210</span></a></li>
                             <li><a href="#"><span class="icon icon-envelope"></span><span
-                                        class="text">info@yourdomain.com</span></a>
-                            </li>
+                                        class="text">info@yourdomain.com</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -192,18 +220,16 @@
             </div>
             <div class="row pt-5">
                 <div class="col-md-12 text-center">
-
                     <p>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         Copyright &copy;
                         <script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with
-                        <i class="ion-ios-heart text-danger" aria-hidden="true"></i> by <a
+                        </script> All rights reserved | This template is made with <i
+                            class="ion-ios-heart text-danger" aria-hidden="true"></i> by <a
                             href="https://colorlib.com" target="_blank">Colorlib</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
-
                 </div>
             </div>
         </div>
@@ -228,12 +254,6 @@
     <script src="/assets/js/owl.carousel.min.js"></script>
     <script src="/assets/js/jquery.magnific-popup.min.js"></script>
     <script src="/assets/js/bootstrap-datepicker.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
-    </script>
 
     <script src="/assets/js/jquery.fancybox.min.js"></script>
 
@@ -242,7 +262,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="/assets/js/google-map.js"></script>
     <script src="/assets/js/main.js"></script>
-    <script src="/assets/js/donation.js"></script>
 
 </body>
 

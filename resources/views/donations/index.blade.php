@@ -235,7 +235,7 @@
                     <div class="col-md-4">
 
                         <a href="/donation/create/{{ $category->id }}" class="card-link">
-                            <div class="card-barang">
+                            <div class="card-category">
                                 <div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="38px" width="38px"
                                         viewBox="0 0 640 512">

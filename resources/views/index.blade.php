@@ -38,10 +38,10 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="how-it-works.html" class="nav-link">How It Works</a></li>          
-                    <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+                    <li class="nav-item"><a href="/items" class="nav-link">Gallery</a></li>
                     <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-                    @if ((auth()->user() && (auth()->user()->level == 'recipient' || auth()->user()->level == 'donor')))
+                    @if ((auth()->user() && (auth()->user()->level == 'recipient')))
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
