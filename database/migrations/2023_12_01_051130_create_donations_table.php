@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('donor_id')->constrained('users');
             $table->foreignId('recipient_id')->constrained('users');
             $table->foreignId('item_id')->constrained('donated_items');
+            $table->enum('status', ['approved', 'disapproved']);
             $table->timestamps();
         });
     }

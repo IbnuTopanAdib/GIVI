@@ -24,6 +24,8 @@ class LoginController extends Controller
 
             if (Auth::user()->level == 'donor') {
                 return redirect()->intended('/');
+            }elseif(Auth::user()->level == 'admin') {
+                return redirect()->intended('/dashboard');
             }
 
             return redirect()->intended('/items');

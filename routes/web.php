@@ -6,6 +6,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\DonatedItemController;
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,10 +36,18 @@ Route::middleware(['auth', 'checklevel:donor', 'prevent-back-history'])->group(f
     Route::resource('/donation', DonatedItemController::class);
     Route::get('/donation/create/{category_id}', [DonatedItemController::class, 'create']);
 });
+Route::middleware(['auth', 'checklevel:admin', 'prevent-back-history'])->group(function () {
+    Route::resource('/donation', DonatedItemController::class);
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+});
 
 Route::middleware(['auth', 'checklevel:recipient', 'prevent-back-history'])->group(function () {
-   Route::get('/items', [DonatedItemController::class, 'showAllItems']);
-   Route::get('/items/{id}', [DonatedItemController::class, 'showItem']);
-   Route::get('/categories', [DonatedItemController::class, 'showAllCategory']);
-   Route::get('/categories/{category_id}', [DonatedItemController::class, 'showBasedOnCategory']);
+    Route::get('/items', [DonatedItemController::class, 'showAllItems']);
+    Route::get('/items/{id}', [DonatedItemController::class, 'showItem']);
+    Route::get('/categories', [DonatedItemController::class, 'showAllCategory']);
+    Route::get('/favorite', [DonatedItemController::class,'showFavorite']);
+    Route::post('/item/{id}/favorite/add', [DonatedItemController::class,'addFavorite'])->name('item.favorite.add');;
+    Route::delete('/item/{id}/favorite/delete', [DonatedItemController::class,'deleteFavorite'])->name('item.favorite.delete');;
+    Route::get('/categories/{category_id}', [DonatedItemController::class, 'showBasedOnCategory']);
+    Route::post('/donations', [DonationController::class, 'store'])->name('donations.store');
 });

@@ -51,7 +51,7 @@
 
                     </form>
                     <li class="nav-item"><a href="how-it-works.html" class="nav-link">Kategori</a></li>
-                    <li class="nav-item"><a href="donate.html" class="nav-link">Favorit</a></li>
+                    <li class="nav-item"><a href="donate.htmlfavorite" class="nav-link">Favorit</a></li>
                     <li class="nav-item active"><a href="gallery.html" class="nav-link">Profil</a></li>
                 </ul>
 

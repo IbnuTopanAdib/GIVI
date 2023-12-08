@@ -93,6 +93,13 @@
                                 <p class="font-weight-bold">Kategori : {{$donatedItem->category->category_name}}</p>
                                 <p class="font-italic">Deskripsi : {{$donatedItem->description}}</p>
                                 <p class="text-muted">Lokasi: {{$donatedItem->location}}</p>
+                                <form action="{{ route('donations.store') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="donor_id" value="{{$donatedItem->user->id}}">
+                                    <input type="hidden" name="recipient_id" value="{{auth()->user()->id}}">
+                                    <input type="hidden" name="item_id" value="{{$donatedItem->id}}">
+                                    <button type="submit" class="btn btn-primary">Ajukan</button>
+                                </form>
                             </div>
                         </div>
                     </div>

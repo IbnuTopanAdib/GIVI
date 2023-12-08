@@ -13,11 +13,16 @@ class Donation extends Model
     use HasFactory;
     protected $guarded =['id'];
 
-    public function user(): BelongsTo
+    public function donor(): BelongsTo
     {
-        return $this->belongsTo(Domain::class);
+        return $this->belongsTo(User::class, 'donor_id');
     }
-    public function answer(): HasOne
+
+    public function recipient(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'recipient_id');
+    }
+    public function donatedItem(): HasOne
     {
         return $this->hasOne(Answer::class);
     }
