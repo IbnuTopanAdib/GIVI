@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\User;
 use App\Http\Requests\StoreDonatedItemRequest;
 use App\Http\Requests\UpdateDonatedItemRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 
@@ -66,7 +67,7 @@ class DonatedItemController extends Controller
     public function showItem($donatedItemId)
     {
         $donatedItem = DonatedItem::find($donatedItemId);
-        return view('items.item', compact( 'donatedItem'));
+        return view('items.item', compact('donatedItem'));
     }
     public function showAllItems(DonatedItem $donatedItem)
     {
@@ -80,8 +81,11 @@ class DonatedItemController extends Controller
             $title = ' by ' . $user->name;
         }
 
+        $user = Auth::user();
+        $favoriteItems = DonatedItem::whereIn('id', $user->favoriteItems);
+
         $donatedItems = DonatedItem::latest()->filter(request(['search', 'category', 'user']))->paginate(10)->withQueryString();
-        return view('items.items', compact('donatedItems'));
+        return view('items.items', compact('donatedItems','favoriteItems'));
     }
 
 
@@ -95,6 +99,39 @@ class DonatedItemController extends Controller
     {
         $donatedItems = DonatedItem::where('category_id', $category_id)->latest()->filter(request(['search', 'category', 'user']))->paginate(10)->withQueryString();
         return view('items.items', compact('donatedItems'));
+    }
+
+    public function addFavorite($donatedItemId)
+    {
+        /** @var \App\Models\User $user **/
+        $user = Auth::user();
+
+        $favorite = array_unique(array_merge($user->favoriteItems ?? [], [$donatedItemId]));
+
+        $user->update(['favoriteItems' => $favorite]);
+
+        return redirect()->back();
+    }
+
+    public function deleteFavorite($donatedItemId)
+    {
+        /** @var \App\Models\User $user **/
+        $user = Auth::user();
+        $user->favoriteItems = array_values(array_diff($user->favoriteItems ?? [], [$donatedItemId]));
+        $user->update(['favoriteItems' => $user->favoriteItems]);
+
+
+        return redirect()->back();
+    }
+
+    public function showFavorite()
+    {
+        $user = Auth::user();
+        $favoriteItems = DonatedItem::whereIn('id', $user->favoriteItems)->paginate(10);
+
+        // If you need to convert it to a collection, you can do this
+
+        return view('items.favoriteItem', compact('favoriteItems'));
     }
 
     /**
