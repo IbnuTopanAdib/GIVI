@@ -50,9 +50,10 @@
                         <button type="submit" class="btn btn-primary">Cari Barang</button>
 
                     </form>
+                    <li class="nav-item"><a href="/items" class="nav-link">Semua Barang</a></li>
                     <li class="nav-item"><a href="/categories" class="nav-link">Kategori</a></li>
-                    <li class="nav-item"><a href="donate.html" class="nav-link">Favorit</a></li>
-                    <li class="nav-item active"><a href="gallery.html" class="nav-link">Profil</a></li>
+                    <li class="nav-item"><a href="/favorite" class="nav-link">Favorit</a></li>
+                    <li class="nav-item active"><a href="/profile" class="nav-link">Profil</a></li>
                 </ul>
 
                 {{-- <form class="d-flex">
