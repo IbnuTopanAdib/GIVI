@@ -30,7 +30,16 @@ class DonationController extends Controller
     public function store(StoreDonationRequest $request)
     {
         
-        
+        $validatedData = $request->validate([
+            'donor_id' => 'required|exists:users,id',
+            'recipient_id' => 'required|exists:users,id',
+            'item_id' => 'required|exists:donated_items,id',
+        ]);
+
+        Donation::create(
+            $validatedData
+        );
+        return redirect()->back()->with('success', 'Pengajuan berhasil');
     }
 
     /**
