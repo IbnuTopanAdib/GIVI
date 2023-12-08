@@ -82,7 +82,7 @@ class DonatedItemController extends Controller
         }
 
         $user = Auth::user();
-        $favoriteItems = DonatedItem::whereIn('id', $user->favoriteItems);
+        $favoriteItems = DonatedItem::whereIn('id', $user->favoriteItems ?? [])->get();
 
         $donatedItems = DonatedItem::latest()->filter(request(['search', 'category', 'user']))->paginate(10)->withQueryString();
         return view('items.items', compact('donatedItems','favoriteItems'));

@@ -46,9 +46,9 @@ class DonatedItem extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function donation(): BelongsTo
+    public function donation(): HasMany
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class);
     }
 
 
