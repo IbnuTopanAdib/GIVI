@@ -41,7 +41,7 @@
                     <li class="nav-item"><a href="/items" class="nav-link">Gallery</a></li>
                     <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-                    @if ((auth()->user() && (auth()->user()->level == 'recipient')))
+                    @if ((auth()->user() && (auth()->user()->level == 'donor')))
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">

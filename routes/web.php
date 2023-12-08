@@ -37,8 +37,11 @@ Route::middleware(['auth', 'checklevel:donor', 'prevent-back-history'])->group(f
 });
 
 Route::middleware(['auth', 'checklevel:recipient', 'prevent-back-history'])->group(function () {
-   Route::get('/items', [DonatedItemController::class, 'showAllItems']);
-   Route::get('/items/{id}', [DonatedItemController::class, 'showItem']);
-   Route::get('/categories', [DonatedItemController::class, 'showAllCategory']);
-   Route::get('/categories/{category_id}', [DonatedItemController::class, 'showBasedOnCategory']);
+    Route::get('/items', [DonatedItemController::class, 'showAllItems']);
+    Route::get('/items/{id}', [DonatedItemController::class, 'showItem']);
+    Route::get('/categories', [DonatedItemController::class, 'showAllCategory']);
+    Route::get('/favorite', [DonatedItemController::class,'showFavorite']);
+    Route::post('/item/{id}/favorite/add', [DonatedItemController::class,'addFavorite'])->name('item.favorite.add');;
+    Route::delete('/item/{id}/favorite/delete', [DonatedItemController::class,'deleteFavorite'])->name('item.favorite.delete');;
+    Route::get('/categories/{category_id}', [DonatedItemController::class, 'showBasedOnCategory']);
 });
