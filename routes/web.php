@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -37,8 +38,13 @@ Route::middleware(['auth', 'checklevel:donor', 'prevent-back-history'])->group(f
     Route::get('/donation/create/{category_id}', [DonatedItemController::class, 'create']);
 });
 Route::middleware(['auth', 'checklevel:admin', 'prevent-back-history'])->group(function () {
-    Route::resource('/donation', DonatedItemController::class);
+
     Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::patch('/donations/{donation}/approve', [DashboardController::class, 'approveDonation'])
+    ->name('donations.approve');
+    Route::patch('/donations/{donation}/disapprove', [DashboardController::class, 'disapproveDonation'])
+    ->name('donations.disapprove');
+    Route::resource('/categories', CategoryController::class);
 });
 
 Route::middleware(['auth', 'checklevel:recipient', 'prevent-back-history'])->group(function () {

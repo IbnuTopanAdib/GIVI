@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\DonatedItem;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Donation extends Model
 {
@@ -22,8 +24,8 @@ class Donation extends Model
     {
         return $this->belongsTo(User::class, 'recipient_id');
     }
-    public function donatedItem(): HasOne
+    public function donatedItem(): BelongsTo
     {
-        return $this->hasOne(Answer::class);
+        return $this->belongsTo(DonatedItem::class, 'item_id');
     }
 }
