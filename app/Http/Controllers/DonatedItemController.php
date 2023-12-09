@@ -127,7 +127,7 @@ class DonatedItemController extends Controller
     public function showFavorite()
     {
         $user = Auth::user();
-        $favoriteItems = DonatedItem::whereIn('id', $user->favoriteItems)->paginate(10);
+        $favoriteItems = DonatedItem::whereIn('id', $user->favoriteItems ?? [])->paginate(5);
 
         // If you need to convert it to a collection, you can do this
 

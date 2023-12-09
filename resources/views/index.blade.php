@@ -37,22 +37,11 @@
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="how-it-works.html" class="nav-link">How It Works</a></li>          
+                    <li class="nav-item"><a href="how-it-works.html" class="nav-link">How It Works</a></li>
                     <li class="nav-item"><a href="/items" class="nav-link">Gallery</a></li>
                     <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-                    @if ((auth()->user() && (auth()->user()->level == 'donor')))
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/">Profile</a></li>
-                                <li><a class="dropdown-item" href="/donation">Donation</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
+                    @if (auth()->user() && (auth()->user()->level == 'donor' || auth()->user()->level == 'recipient'))
                         <li class="nav-item"><a href="/logout" class="nav-link">logout</a></li>
                     @else
                         <li class="nav-item"><a href="/register" class="nav-link">SignUp</a></li>
@@ -64,13 +53,21 @@
     <!-- END nav -->
 
     <div class="block-31" style="position: relative;">
-        <div class="owl-carousel loop-block-31 ">
+        <div class="owl-carousel loop-block-31 " >
             <div class="block-30 block-30-sm item" style="background-image: url('/assets/images/bg-anime.png');"
                 data-stellar-background-ratio="0.5">
-                <div class="container">
+                <div class="container" style="position: relative;">
                     <div class="row align-items-center justify-content-center text-center">
-                        <div class="col-md-7">
-                            <h2 class="heading mb-5" id="effect-typing"></h2>
+                        <div class="col-md-7 position-relative">
+                            <div class="konz" style="height: 250px; overflow:hidden;">
+
+                                <h2 class="heading mb-5" id="effect-typing"></h2>
+                            </div>
+                            @if (auth()->user() && (auth()->user()->level == 'donor'))
+                                
+                            <a href="/donation" class="btn btn-primary"
+                                style="position:sticky; : 100000; bottom: -50px; left: 50%; transform: translateX(-50%);">Donate Your Unused Items</a>
+                            @endif
                         </div>
                     </div>
                 </div>

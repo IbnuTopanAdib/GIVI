@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>RUN CHARITY </title>
+    <title>GIVI -REGISTER </title>
 
     <!-- Template Main CSS File -->
     <link href="/nice-admin/assets/css/style.css" rel="stylesheet">
@@ -38,46 +38,7 @@
  ================================================== -->
     <!-- Start Header
  ================================================== -->
-    <header id="header" class="navbar navbar-inverse navbar-fixed-top" role="banner">
-        <div class="container">
-            <div class="navbar-header">
-                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <!-- Your Logo -->
-                <a href="#hero" class="navbar-brand">RUN CHARITY <span class="lighter">LITE</span></a>
-            </div>
-            <!-- Start Navigation -->
-            <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#hero">Home</a>
-                    </li>
-                    <li>
-                        <a href="#about">About</a>
-                    </li>
-                    <li>
-                        <a href="#gallery">Gallery</a>
-                    </li>
-                    <li>
-                        <a href="#slider">Testimonials</a>
-                    </li>
-                    <li>
-                        <a href="#faq">FAQ</a>
-                    </li>
-                    <li>
-                        <a href="#contactarea">Contact</a>
-                    </li>
-                    <li>
-                        <a href="">Login</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+
 
     <!-- Intro
  ================================================== -->
@@ -89,7 +50,7 @@
                     <div class="d-flex justify-content-center py-4">
                         <a href="index.html" class="logo d-flex align-items-center w-auto">
                             <img src="/nice-admin/assets/img/logo.png" alt="">
-                            <span class="d-none d-lg-block">Survey App</span>
+                            <span class="d-none d-lg-block">GIVI</span>
                         </a>
                     </div><!-- End Logo -->
 
@@ -158,7 +119,7 @@
                         <!-- You can delete the links only if you purchased the pro version. -->
                         <!-- Licensing information: https://bootstrapmade.com/license/ -->
                         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                        Designed by <a href="/">Survey App</a>
+                        Designed by <a href="/">GIVI</a>
                     </div>
 
                 </div>

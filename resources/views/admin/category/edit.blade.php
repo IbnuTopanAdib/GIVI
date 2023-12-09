@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Dashboard - NiceAdmin Bootstrap Template</title>
+    <title>Edit Category</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/nice-admin/assets/img/favicon.png" rel="icon">
+    <link href="/nice-admin/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -33,7 +33,7 @@
 
     <!-- =======================================================
   * Template Name: NiceAdmin
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Updated: May 30 2023 with Bootstrap v5.3.0
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
@@ -100,7 +100,6 @@
         </nav><!-- End Icons Navigation -->
 
     </header><!-- End Header -->
-
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
 
@@ -124,104 +123,75 @@
 
     </aside><!-- End Sidebar-->
 
+    <!-- ======= Main ======= -->
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Dashboard</h1>
+            <h1>Edit Category</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    <li class="breadcrumb-item"><a href="/dashboard" style="text-decoration: none">Home</a></li>
+                    <li class="breadcrumb-item">Category</li>
+                    <li class="breadcrumb-item active">Edit</li>
                 </ol>
             </nav>
-        </div>
+        </div><!-- End Page Title -->
 
-        <section class="section dashboard">
+        <section class="section">
             <div class="row">
                 <div class="col-lg-12">
-
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">DATA PENGAJUAN</h5>
-                            @if (session()->has('success'))
-                                <div class="row justify-content-center">
-                                    <div class="col-md-6">
-                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                            {{ session('success') }}
-                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                aria-label="Close"></button>
+                            <h5 class="card-title">Edit Category</h5>
+
+                            <form action="{{ route('category.update', $category->id) }}" method="POST" enctype="multipart/form-data">
+                                @method('PUT')
+                                @csrf
+                                <div class="row mb-3">
+                                    <label for="category_name" class="col-sm-2 col-form-label">Nama Kategori</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="category_name" id="category_name"
+                                            class="form-control" value="{{ old('category_name') ?? $category->category_name}}">
+                                        @error('category_name')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="row mt-3">
+                                        <label for="category_description"
+                                        class="col-sm-2 col-form-label">Deskripsi Kategori</label>
+                                        <div class="col-md-10">
+                                            <textarea class="form-control" id="category_description" rows="3" name = "category_description" required>{{old('category_description') ?? $category->category_description}}</textarea>
+                                            @error('category_description')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="row mt-3">
+                                        <label for="category_image" class="col-sm-2 col-form-label">Foto Kategori</label>
+                                        <div class="col-md-10">
+                                            <input type="hidden" name="oldImage" value="{{ 'storage/' . $category->category_image }}">
+                                            <input type="file" class="form-control" id="category_image"
+                                                name="category_image">
+                                            @error('category_image')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
-                            @endif
 
-                            @if (session()->has('error'))
-                                <div class="row justify-content-center">
-                                    <div class="col-md-6">
-                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                            {{ session('error') }}
-                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                aria-label="Close"></button>
-                                        </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Update Button</label>
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary">Edit</button>
                                     </div>
                                 </div>
-                            @endif
-                            @if (session()->has('warning'))
-                                <div class="row justify-content-center">
-                                    <div class="col-md-6">
-                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                            {{ session('warning') }}
-                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                aria-label="Close"></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-                            <!-- Table with stripped rows -->
-                            <table id="table-category" class="table table-striped datatable" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Nama Barang</th>
-                                        <th scope="col">Penghibah</th>
-                                        <th scope="col">Pemohon</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($donations as $donation)
-                                        <tr>
-                                            <th scope="row">{{ $loop->iteration }}</th>
-                                            <td>{{ $donation->donatedItem->name }}</td>
-                                            <td>{{ $donation->donor->name }}</td>
-                                            <td>{{ $donation->recipient->name }}</td>
-                                            <td>
-                                                @if (auth()->user()->level == 'admin')
-                                                    @if ($donation->status === 'disapproved')
-                                                        <form method="POST"
-                                                            action="{{ route('donations.approve', $donation) }}">
-                                                            @csrf
-                                                            @method('PATCH')
-                                                            <button type="submit">Setujui</button>
-                                                        </form>
-                                                    @else
-                                                        <form method="POST"
-                                                            action="{{ route('donations.disapprove', $donation) }}">
-                                                            @csrf
-                                                            @method('PATCH')
-                                                            <button type="submit">Batalkan</button>
-                                                        </form>
-                                                        
-                                                    @endif
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
-
-                                </tbody>
-                            </table>
-                            <!-- End Table with stripped rows -->
-
+                            </form>
                         </div>
                     </div>
 

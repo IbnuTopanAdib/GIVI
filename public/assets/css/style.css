@@ -82,6 +82,7 @@ h5,
     max-width: 80px;
     background: #f7ca44;
     border-radius: 100%;
+    overflow: hidden; /* Hide overflow to ensure a clean circle */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,8 +91,11 @@ h5,
     background-size: 200px;
 }
 
-.icon svg {
-    fill: white;
+.icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the entire container while maintaining aspect ratio */
+    transition: all 0.3s ease;
 }
 
 .card-category .title {
@@ -134,10 +138,7 @@ h5,
     transition: all 0.3s ease;
 }
 
-.card-category:hover .icon svg path {
-    fill: black;
-    transition: all 0.3s ease;
-}
+
 
 .nav-icon {
     font-size: 22px;
@@ -265,16 +266,20 @@ h5,
     cursor: pointer;
 }
 
-.card-barang .favorite input {
+.card-barang .favorite button {
     position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
+    width: 19px;
+    height: 19px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    outline: none; /* Menyembunyikan outline saat tombol mendapatkan fokus */
 }
 
-.card-barang .favorite input:checked~svg {
+.card-barang .favorite button i {
     animation: bouncing 0.5s;
-    fill: rgb(255, 95, 95);
+    color: rgb(255, 95, 95);
     filter: drop-shadow(0px 3px 1px rgba(53, 53, 53, 0.14));
 }
 
@@ -2423,21 +2428,6 @@ textarea.form-control {
     .block-30 .heading {
         font-size: 80px;
     }
-}
-.block-30 .btn {
-    background: #fff;
-    border-radius: 0;
-    border: 2px solid transparent;
-    font-size: 14px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #999999;
-    -webkit-box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.2);
-}
-.block-30 .btn:hover {
-    border-color: #fff;
-    color: #fff;
 }
 .block-30.block-30-sm,
 .block-30.block-30-sm .row {

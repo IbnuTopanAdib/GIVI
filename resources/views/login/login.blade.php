@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>RUN CHARITY </title>
+    <title>LOGIN - GIVI</title>
 
     <!-- Styles -->
     <link rel='stylesheet' href='/assets/css/bootstrap.min.css'>
@@ -46,58 +46,19 @@
  ================================================== -->
     <!-- Start Header
  ================================================== -->
-    <header id="header" class="navbar navbar-inverse navbar-fixed-top" role="banner">
-        <div class="container">
-            <div class="navbar-header">
-                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <!-- Your Logo -->
-                <a href="#hero" class="navbar-brand">RUN CHARITY <span class="lighter">LITE</span></a>
-            </div>
-            <!-- Start Navigation -->
-            <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#hero">Home</a>
-                    </li>
-                    <li>
-                        <a href="#about">About</a>
-                    </li>
-                    <li>
-                        <a href="#gallery">Gallery</a>
-                    </li>
-                    <li>
-                        <a href="#slider">Testimonials</a>
-                    </li>
-                    <li>
-                        <a href="#faq">FAQ</a>
-                    </li>
-                    <li>
-                        <a href="#contactarea">Contact</a>
-                    </li>
-                    <li>
-                        <a href="">Login</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+
 
     <!-- Intro
  ================================================== -->
-    <section class="section">
-        <div class="container">
+    <section class="section " style="min-height: 100vh; background: #e8e8e8 ">
+        <div class="container ">
             <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
                     <div class="d-flex justify-content-center py-4">
                         <a href="index.html" class="logo d-flex align-items-center w-auto">
                             <img src="/nice-admin/assets/img/logo.png" alt="">
-                            <span class="d-none d-lg-block">Survey App</span>
+                            <span class="d-none d-lg-block">GIVI</span>
                         </a>
                     </div><!-- End Logo -->
 
@@ -110,37 +71,41 @@
                                 <p class="text-center small">Enter your email & password to login</p>
                             </div>
                             @if (session()->has('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{ session('success') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('success') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
                             @endif
                             @if (session()->has('loginError'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                {{ session('loginError') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{ session('loginError') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
                             @endif
 
                             <form class="row justify-content-center" action="{{ route('authenticate') }}"
                                 method="POST">
                                 @csrf
                                 <div class="col-12">
-                                    <label for="email" class="form-label">Email</label>
-                                    <div class="input-group">
-                                        <input type="email" name="email" class="form-control" id="email"
-                                            required>
-                    
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <div class="input-group">
+                                            <input type="email" name="email" class="form-control" id="email"
+                                                required>
+
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="col-12">
-                                    <label for="yourPassword" class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control"
-                                        id="yourPassword" required>
-                                    <div class="invalid-feedback">Please enter your password!</div>
+                                    <div class="mb-3">
+                                        <label for="yourPassword" class="form-label">Password</label>
+                                        <input type="password" name="password" class="form-control" id="yourPassword"
+                                            required>
+                                        <div class="invalid-feedback">Please enter your password!</div>
+                                    </div>
                                 </div>
 
                                 <div class="col-12">
@@ -160,7 +125,7 @@
                         <!-- You can delete the links only if you purchased the pro version. -->
                         <!-- Licensing information: https://bootstrapmade.com/license/ -->
                         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                        Designed by <a href="/">Survey App</a>
+                        Designed by <a href="/">GIVI</a>
                     </div>
 
                 </div>

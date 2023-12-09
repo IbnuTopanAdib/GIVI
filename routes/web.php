@@ -44,7 +44,7 @@ Route::middleware(['auth', 'checklevel:admin', 'prevent-back-history'])->group(f
     ->name('donations.approve');
     Route::patch('/donations/{donation}/disapprove', [DashboardController::class, 'disapproveDonation'])
     ->name('donations.disapprove');
-    Route::resource('/categories', CategoryController::class);
+    Route::resource('category', CategoryController::class);
 });
 
 Route::middleware(['auth', 'checklevel:recipient', 'prevent-back-history'])->group(function () {
