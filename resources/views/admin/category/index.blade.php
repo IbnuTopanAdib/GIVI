@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Dashboard - NiceAdmin Bootstrap Template</title>
+    <title>Category</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/nice-admin/assets/img/favicon.png" rel="icon">
+    <link href="/nice-admin/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -27,13 +27,21 @@
     <link href="/nice-admin/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
     <link href="/nice-admin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="/nice-admin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+   
 
     <!-- Template Main CSS File -->
     <link href="/nice-admin/assets/css/style.css" rel="stylesheet">
 
+    {{-- datatable --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    {{-- exported button --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+
     <!-- =======================================================
   * Template Name: NiceAdmin
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Updated: May 30 2023 with Bootstrap v5.3.0
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
@@ -100,7 +108,6 @@
         </nav><!-- End Icons Navigation -->
 
     </header><!-- End Header -->
-
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
 
@@ -124,98 +131,84 @@
 
     </aside><!-- End Sidebar-->
 
+    <!-- ======= Main ======= -->
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Dashboard</h1>
+            <h1>Category</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    <li class="breadcrumb-item"><a href="/dashboard" style="text-decoration: none">Home</a></li>
+                    <li class="breadcrumb-item">Category</li>
+                    <li class="breadcrumb-item active">Index</li>
                 </ol>
             </nav>
-        </div>
+        </div><!-- End Page Title -->
 
-        <section class="section dashboard">
+        <section class="section">
             <div class="row">
                 <div class="col-lg-12">
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">DATA PENGAJUAN</h5>
+                            <h5 class="card-title">Data Categories</h5>
                             @if (session()->has('success'))
-                                <div class="row justify-content-center">
-                                    <div class="col-md-6">
-                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                            {{ session('success') }}
-                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                aria-label="Close"></button>
-                                        </div>
+                            <div class="row justify-content-center">
+                                <div class="col-md-6">
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        {{ session('success') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
                                     </div>
                                 </div>
+                            </div>
                             @endif
 
                             @if (session()->has('error'))
-                                <div class="row justify-content-center">
-                                    <div class="col-md-6">
-                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                            {{ session('error') }}
-                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                aria-label="Close"></button>
-                                        </div>
+                            <div class="row justify-content-center">
+                                <div class="col-md-6">
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {{ session('error') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
                                     </div>
                                 </div>
+                            </div>
                             @endif
-                            @if (session()->has('warning'))
-                                <div class="row justify-content-center">
-                                    <div class="col-md-6">
-                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                            {{ session('warning') }}
-                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                aria-label="Close"></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
+
+                            <a href="/category/create" class="btn btn-primary mb-3">Create</a>
+
                             <!-- Table with stripped rows -->
-                            <table id="table-category" class="table table-striped datatable" style="width:100%">
+                            <table id="table-category" class="table table-striped" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Nama Barang</th>
-                                        <th scope="col">Penghibah</th>
-                                        <th scope="col">Pemohon</th>
+                                        <th scope="col">Nama kategori</th>
+                                        <th scope="col">Deskripsi kategori</th>
+                                        <th scope="col">Gambar yang akan ditampilkan</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($donations as $donation)
-                                        <tr>
-                                            <th scope="row">{{ $loop->iteration }}</th>
-                                            <td>{{ $donation->donatedItem->name }}</td>
-                                            <td>{{ $donation->donor->name }}</td>
-                                            <td>{{ $donation->recipient->name }}</td>
-                                            <td>
-                                                @if (auth()->user()->level == 'admin')
-                                                    @if ($donation->status === 'disapproved')
-                                                        <form method="POST"
-                                                            action="{{ route('donations.approve', $donation) }}">
-                                                            @csrf
-                                                            @method('PATCH')
-                                                            <button type="submit">Setujui</button>
-                                                        </form>
-                                                    @else
-                                                        <form method="POST"
-                                                            action="{{ route('donations.disapprove', $donation) }}">
-                                                            @csrf
-                                                            @method('PATCH')
-                                                            <button type="submit">Batalkan</button>
-                                                        </form>
-                                                        
-                                                    @endif
-                                                @endif
-                                            </td>
-                                        </tr>
+                                    @foreach ($categories as $item)
+                                    <tr>
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td>{{ $item->category_name }}</td>
+                                        <td>{{ $item->category_description }}</td>
+                                        <td><img src="{{ url('storage/' . $item->category_image) }}" class="img-fluid" height="100px" width="100px"></td>
+                                        <td>
+                                            @if (auth()->user()->level == 'admin')
+                                            <a href="/category/{{ $item->id }}/edit"
+                                                class="btn btn-primary mb-1">Edit</a>
+                                            <form action="/category/{{ $item->id }}" method="POST" class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger"
+                                                    onclick="return confirm('Apakah kamu yakin?')">Delete</button>
+                                            </form>
+                                            @endif
+                                        </td>
+                                    </tr>
                                     @endforeach
 
                                 </tbody>
@@ -247,6 +240,13 @@
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
+
+    {{-- datatable --}}
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+
 
     <!-- Vendor JS Files -->
     <script src="/nice-admin/assets/vendor/apexcharts/apexcharts.min.js"></script>

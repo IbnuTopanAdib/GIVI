@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,500|Dosis:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+
     <link rel="stylesheet" href="/assets/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/animate.css">
     <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
@@ -82,7 +84,7 @@
                                             @csrf
                                             @method('DELETE')
                                             
-                                            <button type="submit" id="deleteFavoritButton">remove</button>
+                                            <button type="submit" id="deleteFavoritButton"><i class="bi bi-heart-fill"></i></button>
                                         </form>
 
 
