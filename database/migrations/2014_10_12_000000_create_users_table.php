@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('password');
             $table->string('level');
             $table->json('favoriteItems')->nullable();
+            $table->foreignId('province_id')->nullable()->constrained('provinces');
+            $table->foreignId('city_id')->nullable()->constrained('cities');
+            $table->foreignId('district_id')->nullable()->constrained('districts');
+            $table->foreignId('village_id')->nullable()->constrained('villages');
             $table->rememberToken();
             $table->timestamps();
         });

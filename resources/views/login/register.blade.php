@@ -63,8 +63,7 @@
                                 <p class="text-center small">Enter your personal details to create account</p>
                             </div>
 
-                            <form class="row g-3 needs-validation" action="{{ route('register') }}"
-                                method="POST">
+                            <form class="row g-3 needs-validation" action="{{ route('register') }}" method="POST">
                                 @csrf
                                 <div class="col-12">
                                     <label for="yourName" class="form-label">Your Name</label>
@@ -74,38 +73,61 @@
 
                                 <div class="col-12">
                                     <label for="yourEmail" class="form-label">Your Email</label>
-                                    <input type="email" name="email" class="form-control" id="yourEmail"
-                                        required>
+                                    <input type="email" name="email" class="form-control" id="yourEmail" required>
                                     <div class="invalid-feedback">Please enter a valid Email adddress!</div>
                                 </div>
 
                                 <div class="col-12">
                                     <label for="yourPassword" class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control"
-                                        id="yourPassword" required>
+                                    <input type="password" name="password" class="form-control" id="yourPassword"
+                                        required>
                                     <div class="invalid-feedback">Please enter your password!</div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-12">
                                     <label for="donor">Donor</label>
                                     <input type="radio" name="level" value="donor" id="donor">
-                                
+
                                     <label for="recipient">Recipient</label>
                                     <input type="radio" name="level" value="recipient" id="recipient">
                                 </div>
+                                <div class="col-12 mb-3">
+                                    <select class="form-control aria-label="Default select example">
+                                        <option selected>Pilih Provinsi</option>
+                                        @foreach ($provinces as $item)
+                                            <option>{{$item->name}}</option>
+                                        @endforeach
 
-                                <div class="col-12">
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="terms" type="checkbox" value=""
-                                            id="acceptTerms" required>
-                                        <label class="form-check-label" for="acceptTerms">I agree and accept the
-                                            <a href="#">terms and conditions</a></label>
-                                        <div class="invalid-feedback">You must agree before submitting.</div>
-                                    </div>
+                                    </select>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12 mb-3">
+                                    <select class="form-control aria-label="Default select example">
+                                        <option selected>Pilih Kabupaten</option>
+                                        @foreach ($regencies as $item)
+                                            <option>{{$item->name}}</option>
+                                        @endforeach
+
+                                    </select>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <select class="form-control aria-label="Default select example">
+                                        <option selected>Pilih Kecematan</option>
+                                        @foreach ($districts as $item)
+                                            <option>{{$item->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <select class="form-control aria-label="Default select example">
+                                        <option selected>Pilih Desa</option>
+                                        @foreach ($villages as $item)
+                                            <option>{{$item->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-12 mb-3">
                                     <button class="btn btn-primary w-100" type="submit">Create Account</button>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12 mb-3">
                                     <p class="small mb-0">Already have an account? <a href="/login">Log in</a>
                                     </p>
                                 </div>

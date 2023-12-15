@@ -65,7 +65,7 @@
                             </div>
                             @if (auth()->user() && (auth()->user()->level == 'donor'))
                                 
-                            <a href="/donation" class="btn btn-primary"
+                            <a href="/donated-items" class="btn btn-primary"
                                 style="position:sticky; : 100000; bottom: -50px; left: 50%; transform: translateX(-50%);">Donate Your Unused Items</a>
                             @endif
                         </div>
