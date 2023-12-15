@@ -88,10 +88,10 @@
                     <div class="card-body">
                         <h5 class="card-title">Pratinjau Tawaran Anda</h5>
                         <div class="row">
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <img src="{{asset('./storage/' . $donatedItem->image)}}" alt="Image placeholder" class="card-img">
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <h3>Nama Barang : {{$donatedItem->name}}</h3>
                                 <p class="font-weight-bold">Kategori : {{$donatedItem->category->category_name}}</p>
                                 <p class="font-italic">Deskripsi : {{$donatedItem->description}}</p>

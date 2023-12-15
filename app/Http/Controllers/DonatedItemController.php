@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Http\Requests\StoreDonatedItemRequest;
 use App\Http\Requests\UpdateDonatedItemRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+
 use Illuminate\Support\Str;
 
 
@@ -31,6 +33,13 @@ class DonatedItemController extends Controller
     {
         $categories = Category::all();
         return view('donations.create', compact('selectedCategoryId', 'categories'));
+    }
+
+    public function show(){
+        $currentUserId = auth()->user()->id;
+        $donatedItems = DonatedItem::where('user_id', $currentUserId )->get();
+
+        return view('donations.listDonations',compact('donatedItems'));
     }
 
     /**
@@ -57,7 +66,7 @@ class DonatedItemController extends Controller
         $userId = auth()->user()->id;
         $validatedData['user_id'] = $userId;
         DonatedItem::create($validatedData);
-        return redirect('donation')->with('success', 'Donasi berhasil dibuat');
+        return redirect('/donated-items/list-items')->with('success', 'Donasi berhasil dibuat');
     }
 
     /**
@@ -85,6 +94,7 @@ class DonatedItemController extends Controller
         $favoriteItems = DonatedItem::whereIn('id', $user->favoriteItems ?? [])->get();
 
         $donatedItems = DonatedItem::latest()->filter(request(['search', 'category', 'user']))->paginate(10)->withQueryString();
+        
         return view('items.items', compact('donatedItems','favoriteItems'));
     }
 
@@ -139,7 +149,10 @@ class DonatedItemController extends Controller
      */
     public function edit(DonatedItem $donatedItem)
     {
-        //
+        $categories = Category::all();
+
+
+        return view('donations.edit', compact('donatedItem', 'categories'));
     }
 
     /**
@@ -147,7 +160,28 @@ class DonatedItemController extends Controller
      */
     public function update(UpdateDonatedItemRequest $request, DonatedItem $donatedItem)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'category_id' => 'required',
+            'description' => 'required',
+            'location' => 'required',
+            
+        ]);
+
+        if ($request->hasFile('image')) {
+            if ($request->oldImage){
+                unlink($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image');
+            $ext = $validatedData['image']->getClientOriginalExtension();
+            $filename = "item-" . time() . "." . $ext;
+            request()->image->move(public_path('storage/'), $filename);
+            $validatedData['image'] = $filename;
+        }
+
+        DonatedItem::where('id', $donatedItem->id)->update($validatedData);
+        return redirect('/donated-items/list-items')->with('success', 'Donasi berhasil dibuat');
+
     }
 
     /**
@@ -155,6 +189,11 @@ class DonatedItemController extends Controller
      */
     public function destroy(DonatedItem $donatedItem)
     {
-        //
+        $image_path ='storage/' . $donatedItem->image;
+        if (File::exists(public_path( $image_path ))){
+            unlink($image_path);
+         }
+        $donatedItem->delete();
+        return redirect('/donated-items/list-items')->with('success', 'Donasi berhasil dihapus');
     }
 }

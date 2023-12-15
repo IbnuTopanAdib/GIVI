@@ -3,14 +3,18 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Regency;
+use App\Models\Village;
+use App\Models\District;
+use App\Models\Donation;
+use App\Models\Province;
+use App\Models\DonatedItem;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\DonatedItem;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\Donation;
 
 class User extends Authenticatable
 {
@@ -26,7 +30,11 @@ class User extends Authenticatable
         'email',
         'password',
         'level',
-        'favoriteItems'
+        'favoriteItems',
+        'province_id',
+        'regency_id',
+        'district_id',
+        'village_id',
     ];
 
     /**
@@ -56,6 +64,26 @@ class User extends Authenticatable
     }
     public function donation(): HasMany
     {
-        return $this->hasMany(Domain::class);
+        return $this->hasMany(DonatedItem::class);
     }
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
+    }
+
+    public function regency()
+    {
+        return $this->belongsTo(Regency::class);
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(District::class);
+    }
+
+    public function village()
+    {
+        return $this->belongsTo(Village::class);
+    }
+
 }

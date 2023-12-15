@@ -34,8 +34,10 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('authentic
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth', 'checklevel:donor', 'prevent-back-history'])->group(function () {
-    Route::resource('/donation', DonatedItemController::class);
-    Route::get('/donation/create/{category_id}', [DonatedItemController::class, 'create']);
+    Route::resource('donated-items', DonatedItemController::class);
+    Route::get('/donated-items/create/{category_id}', [DonatedItemController::class, 'create']);
+    Route::get('/donated-items/list-items', [DonatedItemController::class, 'show']);
+    
 });
 Route::middleware(['auth', 'checklevel:admin', 'prevent-back-history'])->group(function () {
 
