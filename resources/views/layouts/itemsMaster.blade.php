@@ -2,12 +2,13 @@
 <html lang="en">
 
 <head>
-    <title>GiveHope &mdash; Website Template by Colorlib</title>
+    <title>GIVI</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,500|Dosis:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+
     <link rel="stylesheet" href="/assets/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/animate.css">
     <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
@@ -23,11 +24,6 @@
 
     <link rel="stylesheet" href="/assets/css/bootstrap.css">
     <link rel="stylesheet" href="/assets/css/style.css">
-    <style>
-        .hidden {
-            display: none;
-        }
-    </style>
 
 </head>
 
@@ -56,10 +52,10 @@
                         <button type="submit" class="btn btn-primary">Cari Barang</button>
 
                     </form>
-                    <li class="nav-item active"><a href="/items" class="nav-link">Semua Barang</a></li>
-                    <li class="nav-item"><a href="/categories" class="nav-link">Kategori</a></li>
-                    <li class="nav-item"><a href="/favorite" class="nav-link">Favorit</a></li>
-                    <li class="nav-item"><a href="gallery.html" class="nav-link">Profil</a></li>
+                    <li class="nav-item @yield('active1')"><a href="/items" class="nav-link">Semua Barang</a></li>
+                    <li class="nav-item @yield('active2')"><a href="/categories" class="nav-link">Kategori</a></li>
+                    <li class="nav-item @yield('active3')"><a href="/favorite" class="nav-link">Favorit</a></li>
+                    <li class="nav-item @yield('active4')"><a href="gallery.html" class="nav-link">Profil</a></li>
                 </ul>
 
                 {{-- <form class="d-flex">
@@ -71,93 +67,11 @@
     </nav>
     <!-- END nav -->
 
-
     <div class="site-section bg-secondary">
         <div class="container">
 
-            @if ($donatedItems->count())
-                <div class="container">
-                    <div class="row">
-                        @foreach ($donatedItems as $donatedItem)
-                            <div class="col-md-3">
-                                <div class="card-barang">
-                                    <div class="image-container">
-                                        <img src="{{ asset('./storage/' . $donatedItem->image) }}" alt="">
-                                    </div>
-                                    <div class="favorite">
-                                        <form class="favorit-form addFavoritForm" data-item-id="{{ $donatedItem->id }}"
-                                            method="POST" action="/item/{{ $donatedItem->id }}/favorite/add">
-                                            @csrf
-                                            <button type="submit" class="addFavoritButton"><i
-                                                    class="bi bi-heart"></i></button>
-                                        </form>
-                                        <form class="favorit-form deleteFavoritForm"
-                                            data-item-id="{{ $donatedItem->id }}" method="POST"
-                                            action="/item/{{ $donatedItem->id }}/favorite/delete">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="deleteFavoritButton"><i
-                                                    class="bi bi-heart-fill"></i></button>
-                                        </form>
-                                    </div>
-                                    <div class="content">
-                                        <div class="category">
+            @yield('itemContent')
 
-                                            <a href="/items?category={{ $donatedItem->category->category_name }}"
-                                                class="text-decoration-none">{{ $donatedItem->category->category_name }}
-                                            </a>
-                                        </div>
-                                        <div class="item-name">{{ $donatedItem->name }}</div>
-                                        <div class="description">
-                                            {{ $donatedItem->description }}
-                                        </div>
-                                        <div class="donator">
-                                            By. <a
-                                                href="/items?user={{ $donatedItem->user->username }}">{{ $donatedItem->user->name }}</a>
-                                        </div>
-                                        <div class="location">location: {{ $donatedItem->location }}</div>
-                                    </div>
-
-                                    <div class="button-container">
-                                        <a href="/items/{{ $donatedItem->id }}"
-                                            class="readmore button text-center">Read More</a>
-                                    </div>
-                                </div>
-                                {{-- <div class="card float-animation">
-                                    <div class="position-absolute px-3 py-2"
-                                        style="background-color: rgba(0,0,0,0.5)"><a
-                                            href="/items?category={{ $donatedItem->category->category_name }}"
-                                            class="text-white text-decoration-none">{{ $donatedItem->category->category_name }}</a>
-                                    </div>
-                                    <img src="https://source.unsplash.com/200x200/?{{ $donatedItem->category->category_name }}"
-                                        class="card-img-top" alt="{{ $donatedItem->category->category_name }}">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $donatedItem->name }}</h5>
-                                        <p>
-                                            <small class="text-muted">
-                                                By. <a
-                                                    href="/items?user={{ $donatedItem->user->username }}">{{ $donatedItem->user->name }}</a>
-                                                in <a href="/categories/{{ $donatedItem->category->category_name }}"
-                                                    class="text-decoration-none">
-                                                    {{ $donatedItem->category->category_name }}</a>
-                                                {{ $donatedItem->created_at->diffForHumans() }}
-                                            </small>
-                                        </p>
-                                        <p class="card-text">{{ $donatedItem->location }}</p>
-                                        <a href="/items/{{ $donatedItem->id }}" class="btn btn-primary">Read More</a>
-                                    </div>
-                                </div> --}}
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            @else
-                <p class="text-center fs-4">Barang tidak ditemukan</p>
-            @endif
-
-            <div class="d-flex mt-10">
-                {{ $donatedItems->links() }}
-            </div>
         </div>
     </div>
 
@@ -319,67 +233,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="/assets/js/google-map.js"></script>
     <script src="/assets/js/main.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const favoritBarangIds = @json($favoriteItems->pluck('id')->toArray());
-            const semuaBarangIds = @json($donatedItems->pluck('id')->toArray());
-
-            const favoritForms = document.querySelectorAll('.favorit-form');
-
-            favoritForms.forEach(form => {
-                form.addEventListener('submit', async (event) => {
-                    event.preventDefault();
-
-                    try {
-                        const response = await fetch(form.action, {
-                            method: form.method,
-                            body: new FormData(form),
-                        });
-
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! Status: ${response.status}`);
-                        }
-
-                        // Ganti tampilan formulir yang sesuai berdasarkan aksi favorit
-                        const itemId = form.getAttribute('data-item-id');
-                        const addFavoritButton = document.querySelector(
-                            `.addFavoritForm[data-item-id="${itemId}"]`);
-                        const deleteFavoritButton = document.querySelector(
-                            `.deleteFavoritForm[data-item-id="${itemId}"]`);
-
-                        addFavoritButton.classList.add("hidden");
-                        deleteFavoritButton.classList.add("hidden");
-
-                        if (form.classList.contains('addFavoritForm')) {
-                            deleteFavoritButton.classList.remove("hidden");
-                        } else {
-                            addFavoritButton.classList.remove("hidden");
-                        }
-                    } catch (error) {
-                        console.error("Error:", error);
-                    }
-                });
-            });
-
-            // Tambahkan logika untuk menyembunyikan/menampilkan formulir berdasarkan favoritBarangIds
-            semuaBarangIds.forEach(id => {
-                const addFavoritForm = document.querySelector(`.addFavoritForm[data-item-id="${id}"]`);
-                const deleteFavoritForm = document.querySelector(
-                `.deleteFavoritForm[data-item-id="${id}"]`);
-
-                if (favoritBarangIds.includes(id)) {
-                    addFavoritForm.classList.add("hidden");
-                    console.log(`Item ${id} is in favorites`);
-                    // Lakukan sesuatu jika item berada dalam favorit
-                } else {
-                    console.log(`Item ${id} is not in favorites`);
-                    deleteFavoritForm.classList.add("hidden");
-                    // Lakukan sesuatu jika item tidak berada dalam favorit
-                }
-            });
-        });
-    </script>
-
 </body>
 
 </html>
